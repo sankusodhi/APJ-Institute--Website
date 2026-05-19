@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Admin Model - For authentication and admin management
+model Admin {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique @db.VarChar(255)
+  password  String  @db.VarChar(255)
+  name      String  @db.VarChar(255)
+  role      String  @default("admin") @db.VarChar(50)
+  isActive  Boolean @default(true)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+// Inquiry Model - For storing contact form inquiries
+model Inquiry {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(255)
+  email     String  @db.VarChar(255)
+  phone     String  @db.VarChar(20)
+  message   String  @db.LongText
+  status    String  @default("new") @db.VarChar(50) // new, read, resolved
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("inquiries")
+  @@index([email])
+  @@index([createdAt])
+}
+
+// Notification Model - For live notifications and announcements
+model Notification {
+  id        Int     @id @default(autoincrement())
+  title     String  @db.VarChar(255)
+  message   String  @db.LongText
+  type      String  @default("info") @db.VarChar(50) // info, warning, success, error
+  priority  Int     @default(0) // 0 = low, 1 = medium, 2 = high
+  isActive  Boolean @default(true)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("notifications")
+  @@index([createdAt])
+  @@index([isActive])
+}
+
+// Event Model - For managing college events
+model Event {
+  id          Int     @id @default(autoincrement())
+  title       String  @db.VarChar(255)
+  description String  @db.LongText
+  date        DateTime
+  location    String  @db.VarChar(255)
+  image       String? @db.VarChar(255) // Optional image URL
+  isActive    Boolean @default(true)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("events")
+  @@index([date])
+  @@index([isActive])
+}
+
+// Gallery Model - For managing gallery images
+model Gallery {
+  id        Int     @id @default(autoincrement())
+  title     String  @db.VarChar(255)
+  image     String  @db.VarChar(255) // Image file path
+  category  String? @db.VarChar(100) // Optional: campus, events, faculty, etc.
+  isActive  Boolean @default(true)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("galleries")
+  @@index([category])
+  @@index([isActive])
+}
+
+// Faculty Model - For managing faculty/staff information
+model Faculty {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(255)
+  role      String  @db.VarChar(255) // Professor, Lecturer, Assistant, etc.
+  email     String? @db.VarChar(255)
+  phone     String? @db.VarChar(20)
+  image     String? @db.VarChar(255) // Optional image URL
+  department String? @db.VarChar(100)
+  bio       String? @db.LongText
+  isActive  Boolean @default(true)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faculties")
+  @@index([department])
+  @@index([isActive])
+}
