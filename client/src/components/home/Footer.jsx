@@ -16,7 +16,7 @@ export default function Footer() {
     <footer className="w-full flex flex-col mt-auto relative z-10">
       {/* Top CTA Banner - Cinematic Admission Banner */}
       <section className="relative w-full overflow-hidden shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-indigo-900 to-cyan-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a]"></div>
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-40"></div>
         
@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
             <Link
               to="/admission"
-              className="group inline-flex items-center gap-2 rounded-full bg-cyan-500 px-8 py-4 text-sm font-black text-slate-900 shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:bg-cyan-400 hover:scale-105 active:scale-95 transition-all duration-300"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#1e3a5f] px-8 py-4 text-sm font-black text-white shadow-[0_0_30px_rgba(30,58,95,0.5)] hover:bg-[#2a4d75] hover:scale-105 active:scale-95 transition-all duration-300"
             >
               Start Your Admission Process
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -51,12 +51,12 @@ export default function Footer() {
             {/* Column 1: Brand & Logo */}
             <div className="flex flex-col">
               <Link to="/" className="flex items-center gap-3 group">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.4)] group-hover:scale-110 transition-transform duration-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1e3a5f] text-white shadow-[0_0_20px_rgba(30,58,95,0.4)] group-hover:scale-110 transition-transform duration-300">
                   <HeartPulse size={24} className="stroke-[2.5]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-black leading-none tracking-wide text-white group-hover:text-cyan-400 transition-colors">APJ Institute</h3>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-500 mt-1.5 block">Dantewada</span>
+                  <h3 className="text-xl font-black leading-none tracking-wide text-white group-hover:text-[#4a7ab5] transition-colors">APJ Institute</h3>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#4a7ab5] mt-1.5 block">Dantewada</span>
                 </div>
               </Link>
               <p className="mt-6 text-sm leading-relaxed text-slate-400 max-w-sm font-light">
@@ -81,14 +81,14 @@ export default function Footer() {
 
             {/* Column 2: Quick Links */}
             <div>
-              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-cyan-500 pl-4 mb-6 drop-shadow-sm">
+              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-[#1e3a5f] pl-4 mb-6 drop-shadow-sm">
                 Explore
               </h4>
               <ul className="space-y-4 text-sm text-slate-400 font-medium">
                 {['Home', 'About Institute', 'Paramedical Courses', 'Nursing Programs', 'Admissions'].map((link) => (
                   <li key={link}>
-                    <Link to={link === 'Home' ? '/' : `/${link.split(' ')[0].toLowerCase()}`} className="group inline-flex items-center gap-2 hover:text-cyan-400 transition-colors">
-                      <ChevronRight size={14} className="text-slate-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                    <Link to={link === 'Home' ? '/' : `/${link.split(' ')[0].toLowerCase()}`} className="group inline-flex items-center gap-2 hover:text-[#4a7ab5] transition-colors">
+                      <ChevronRight size={14} className="text-slate-600 group-hover:text-[#4a7ab5] group-hover:translate-x-1 transition-all" />
                       {link}
                     </Link>
                   </li>
@@ -98,14 +98,14 @@ export default function Footer() {
 
             {/* Column 3: Resources */}
             <div>
-              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-cyan-500 pl-4 mb-6 drop-shadow-sm">
+              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-[#1e3a5f] pl-4 mb-6 drop-shadow-sm">
                 Resources
               </h4>
               <ul className="space-y-4 text-sm text-slate-400 font-medium">
                 {['Student Portal', 'Placement Cell', 'Hostel Facility', 'Events & Gallery', 'Fee Structure'].map((link) => (
                   <li key={link}>
-                    <Link to="/admission" className="group inline-flex items-center gap-2 hover:text-cyan-400 transition-colors">
-                      <ChevronRight size={14} className="text-slate-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                    <Link to="/admission" className="group inline-flex items-center gap-2 hover:text-[#4a7ab5] transition-colors">
+                      <ChevronRight size={14} className="text-slate-600 group-hover:text-[#4a7ab5] group-hover:translate-x-1 transition-all" />
                       {link}
                     </Link>
                   </li>
@@ -115,13 +115,13 @@ export default function Footer() {
 
             {/* Column 4: Contact Us */}
             <div>
-              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-cyan-500 pl-4 mb-6 drop-shadow-sm">
+              <h4 className="text-base font-bold uppercase tracking-widest text-white border-l-4 border-[#1e3a5f] pl-4 mb-6 drop-shadow-sm">
                 Get In Touch
               </h4>
               <ul className="space-y-5 text-sm text-slate-400 font-medium">
                 <li className="flex gap-4 items-start group">
                   <div className="w-10 h-10 rounded-lg bg-slate-800/80 border border-white/5 flex items-center justify-center shrink-0 group-hover:bg-blue-900/50 group-hover:border-blue-500/30 transition-colors">
-                    <MapPin size={18} className="text-cyan-400" />
+                    <MapPin size={18} className="text-[#4a7ab5]" />
                   </div>
                   <span className="leading-relaxed pt-1">
                     APJ Institute Campus, Sanjay Nagar, Near BSNL Exchange Office, Dantewada (C.G.)
@@ -129,15 +129,15 @@ export default function Footer() {
                 </li>
                 <li className="flex gap-4 items-center group">
                   <div className="w-10 h-10 rounded-lg bg-slate-800/80 border border-white/5 flex items-center justify-center shrink-0 group-hover:bg-blue-900/50 group-hover:border-blue-500/30 transition-colors">
-                    <Phone size={18} className="text-cyan-400" />
+                    <Phone size={18} className="text-[#4a7ab5]" />
                   </div>
                   <span className="pt-1">9243758191, 930761647</span>
                 </li>
                 <li className="flex gap-4 items-center group">
                   <div className="w-10 h-10 rounded-lg bg-slate-800/80 border border-white/5 flex items-center justify-center shrink-0 group-hover:bg-blue-900/50 group-hover:border-blue-500/30 transition-colors">
-                    <Mail size={18} className="text-cyan-400" />
+                    <Mail size={18} className="text-[#4a7ab5]" />
                   </div>
-                  <a href="mailto:info@apjinstitute.edu" className="hover:text-cyan-400 transition-colors pt-1">
+                  <a href="mailto:info@apjinstitute.edu" className="hover:text-[#4a7ab5] transition-colors pt-1">
                     info@apjinstitute.edu
                   </a>
                 </li>
@@ -157,11 +157,11 @@ export default function Footer() {
                   type="email"
                   required
                   placeholder="Enter your email address"
-                  className="w-full bg-slate-900/80 border border-slate-700 rounded-full pl-6 pr-32 py-3.5 text-sm text-slate-200 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none transition-all placeholder-slate-500"
+                  className="w-full bg-slate-900/80 border border-slate-700 rounded-full pl-6 pr-32 py-3.5 text-sm text-slate-200 focus:border-[#1e3a5f] focus:ring-1 focus:ring-[#1e3a5f] focus:outline-none transition-all placeholder-slate-500"
                 />
                 <button
                   type="submit"
-                  className="absolute right-1.5 top-1.5 bottom-1.5 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-6 rounded-full text-sm transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+                  className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#1e3a5f] hover:bg-[#2a4d75] text-white font-bold px-6 rounded-full text-sm transition-all duration-300 shadow-[0_0_20px_rgba(30,58,95,0.3)] hover:shadow-[0_0_30px_rgba(30,58,95,0.5)]"
                 >
                   Join
                 </button>
@@ -171,8 +171,8 @@ export default function Footer() {
             <div className="text-center md:text-right text-xs font-medium text-slate-500 tracking-wider">
               <p className="mb-2 hover:text-slate-400 transition-colors">© 2026 APJ Institute Dantewada. All rights reserved.</p>
               <div className="flex items-center justify-center md:justify-end gap-4">
-                <Link to="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+                <Link to="/privacy" className="hover:text-[#4a7ab5] transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="hover:text-[#4a7ab5] transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>
