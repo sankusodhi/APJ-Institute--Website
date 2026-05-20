@@ -145,14 +145,14 @@ export default function CoursesPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden selection:bg-cyan-500/30">
+    <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden selection:bg-blue-900/30">
       
       {/* 1. CINEMATIC HERO SECTION */}
-      <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-32 overflow-hidden bg-slate-50 border-b border-slate-200">
+      <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-32 overflow-hidden bg-slate-900 border-b border-slate-800">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-slate-50">
-          <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-fixed opacity-50"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-slate-50"></div>
+        <div className="absolute inset-0 z-0 bg-slate-900">
+          <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-fixed opacity-40"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80"></div>
           {/* Animated Glows */}
           <motion.div 
             animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }} 
@@ -162,7 +162,7 @@ export default function CoursesPage() {
           <motion.div 
             animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }} 
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px]"
+            className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[150px]"
           ></motion.div>
         </div>
 
@@ -171,27 +171,27 @@ export default function CoursesPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-cyan-300 bg-cyan-200/80 backdrop-blur-md mb-8 shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#1e3a5f] bg-[#1e3a5f]/20 backdrop-blur-md mb-8 shadow-sm"
           >
-            <SparklesIcon className="text-cyan-600 w-4 h-4" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Admissions Open 2026-27</span>
+            <SparklesIcon className="text-white w-4 h-4" />
+            <span className="text-xs font-bold uppercase tracking-widest text-white">Admissions Open 2026-27</span>
           </motion.div>
 
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight drop-shadow-2xl"
+            className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight drop-shadow-2xl"
           >
             Build Your Future in <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 filter drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]">Healthcare</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a5f] to-blue-400 filter drop-shadow-[0_0_20px_rgba(30,58,95,0.5)]">Healthcare</span>
           </motion.h1>
 
           <motion.p 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="mx-auto max-w-2xl text-lg md:text-xl text-slate-600 mb-10 leading-relaxed font-light"
+            className="mx-auto max-w-2xl text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-light"
           >
             Equipping the next generation of paramedical and nursing professionals with world-class training, modern labs, and 100% placement support.
           </motion.p>
@@ -206,11 +206,11 @@ export default function CoursesPage() {
               href="#courses" 
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-slate-900 font-bold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)] hover:brightness-110 transition-all duration-300"
+              className="px-8 py-4 rounded-full bg-[#1e3a5f] text-white font-bold text-lg shadow-[0_0_30px_rgba(30,58,95,0.6)] hover:shadow-[0_0_50px_rgba(30,58,95,0.8)] hover:brightness-125 transition-all duration-300"
             >
               Explore Courses
             </motion.a>
-            <Link to="/contact" className="group px-8 py-4 rounded-full border border-slate-300 bg-white/50 backdrop-blur-md text-slate-800 font-bold text-lg hover:bg-slate-100 transition-all duration-300 flex items-center gap-2">
+            <Link to="/contact" className="group px-8 py-4 rounded-full border border-slate-500 bg-white/10 backdrop-blur-md text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
               Contact Advisor <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </motion.div>
@@ -221,7 +221,7 @@ export default function CoursesPage() {
       <section className="relative z-20 -mt-16 mx-auto max-w-6xl px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-white/90 backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           {[
-            { label: "Students", value: 5000, suffix: "+", icon: <Users className="text-cyan-400 mb-2" size={28} /> },
+            { label: "Students", value: 5000, suffix: "+", icon: <Users className="text-[#1e3a5f] mb-2" size={28} /> },
             { label: "Placement", value: 95, suffix: "%", icon: <Trophy className="text-blue-400 mb-2" size={28} /> },
             { label: "Experience", value: 10, suffix: "+ Yrs", icon: <Award className="text-indigo-400 mb-2" size={28} /> },
             { label: "Modern Labs", value: 15, suffix: "+", icon: <Microscope className="text-purple-400 mb-2" size={28} /> }
@@ -248,7 +248,7 @@ export default function CoursesPage() {
       <section id="courses" className="mx-auto max-w-7xl px-4 lg:px-8 py-24">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
-            <h2 className="text-4xl font-extrabold text-slate-900 mb-4"><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Premium</span> Programs</h2>
+            <h2 className="text-4xl font-extrabold text-slate-900 mb-4"><span className="text-[#1e3a5f]">Premium</span> Programs</h2>
             <p className="text-slate-600 max-w-xl">Choose from our industry-aligned paramedical and nursing courses designed to secure your future in the booming healthcare sector.</p>
           </div>
           
@@ -261,7 +261,7 @@ export default function CoursesPage() {
               placeholder="Search programs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-2xl border border-slate-300 bg-white/50 backdrop-blur-sm py-3.5 pl-12 pr-5 text-sm text-slate-900 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 focus:outline-none transition-all placeholder-slate-400 shadow-inner"
+              className="w-full rounded-2xl border border-slate-300 bg-white/50 backdrop-blur-sm py-3.5 pl-12 pr-5 text-sm text-slate-900 focus:border-[#1e3a5f]/50 focus:ring-1 focus:ring-[#1e3a5f]/50 focus:outline-none transition-all placeholder-slate-400 shadow-inner"
             />
           </div>
         </div>
@@ -274,8 +274,8 @@ export default function CoursesPage() {
               onClick={() => setSelectedCategory(category)}
               className={`rounded-full px-6 py-2.5 text-sm font-bold tracking-wide transition-all duration-300 hover:scale-105 active:scale-95 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-[0_0_20px_rgba(6,182,212,0.4)]"
-                  : "bg-slate-800/60 text-slate-600 border border-slate-200 hover:bg-slate-700 hover:text-slate-900"
+                  ? "bg-[#1e3a5f] text-white shadow-[0_0_20px_rgba(30,58,95,0.5)]"
+                  : "bg-slate-100 text-slate-600 border border-slate-200 hover:bg-[#1e3a5f]/10 hover:text-slate-900"
               }`}
             >
               {category}
@@ -311,20 +311,20 @@ export default function CoursesPage() {
                     loading="lazy"
                   />
                   {/* Floating Icon */}
-                  <div className="absolute top-4 right-4 z-20 h-12 w-12 rounded-2xl bg-white/90 backdrop-blur border border-slate-200 flex items-center justify-center text-cyan-400 shadow-lg group-hover:bg-cyan-500 group-hover:text-slate-900 transition-colors duration-300">
+                  <div className="absolute top-4 right-4 z-20 h-12 w-12 rounded-2xl bg-white/90 backdrop-blur border border-slate-200 flex items-center justify-center text-[#1e3a5f] shadow-lg group-hover:bg-[#1e3a5f] group-hover:text-white transition-colors duration-300">
                     {course.icon}
                   </div>
                   {/* Category Badge */}
-                  <span className="absolute bottom-4 left-4 z-20 rounded-full px-4 py-1.5 text-xs font-black tracking-widest uppercase bg-blue-600/90 text-white backdrop-blur border border-white/20 shadow-lg">
+                  <span className="absolute bottom-4 left-4 z-20 rounded-full px-4 py-1.5 text-xs font-black tracking-widest uppercase bg-[#1e3a5f] text-white backdrop-blur border border-white/20 shadow-lg">
                     {course.category}
                   </span>
                 </div>
 
                 {/* Content Section */}
                 <div className="flex flex-col flex-1 p-6 sm:p-8 relative">
-                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500"></div>
+                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#1e3a5f]/10 rounded-full blur-2xl group-hover:bg-[#1e3a5f]/20 transition-all duration-500"></div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-cyan-600 transition-colors leading-tight mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#1e3a5f] transition-colors leading-tight mb-3">
                     {course.title}
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1 line-clamp-3">
@@ -333,15 +333,15 @@ export default function CoursesPage() {
 
                   <div className="grid grid-cols-2 gap-4 text-sm font-medium border-t border-slate-100 pt-6">
                     <div className="flex items-center gap-2 text-slate-600">
-                      <Clock size={16} className="text-cyan-500" />
+                      <Clock size={16} className="text-[#1e3a5f]" />
                       {course.duration}
                     </div>
                     <div className="flex items-center gap-2 text-slate-600">
-                      <IndianRupee size={16} className="text-cyan-500" />
+                      <IndianRupee size={16} className="text-[#1e3a5f]" />
                       {course.fees}
                     </div>
                     <div className="flex items-center gap-2 text-slate-600">
-                      <BookOpen size={16} className="text-cyan-500" />
+                      <BookOpen size={16} className="text-[#1e3a5f]" />
                       <span className="truncate">{course.eligibility}</span>
                     </div>
                     <div className="flex items-center gap-2 text-emerald-400">
@@ -352,7 +352,7 @@ export default function CoursesPage() {
 
                   <Link
                     to="/contact"
-                    className="mt-8 flex items-center justify-center gap-2 w-full rounded-2xl bg-slate-50 border border-slate-200 py-3.5 text-sm font-bold text-slate-900 group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-500 group-hover:border-transparent transition-all duration-300"
+                    className="mt-8 flex items-center justify-center gap-2 w-full rounded-2xl bg-slate-50 border border-slate-200 py-3.5 text-sm font-bold text-slate-900 group-hover:text-white group-hover:bg-[#1e3a5f] group-hover:border-transparent transition-all duration-300"
                   >
                     Apply Now <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
                   </Link>
@@ -380,7 +380,7 @@ export default function CoursesPage() {
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">Your Pathway to a <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">Secure Career</span></h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">Your Pathway to a <span className="text-[#1e3a5f]">Secure Career</span></h2>
             <p className="text-lg text-slate-600">We don't just provide education; we guarantee practical exposure and career readiness in the healthcare industry.</p>
           </div>
 
@@ -421,7 +421,7 @@ export default function CoursesPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-slate-200 pb-8">
             <div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Student <span className="text-cyan-400">Success</span></h2>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Student <span className="text-[#1e3a5f]">Success</span></h2>
               <p className="text-slate-600 max-w-xl text-lg">Hear from our alumni who are now successfully working in top hospitals and healthcare centers.</p>
             </div>
           </div>
@@ -445,7 +445,7 @@ export default function CoursesPage() {
                   <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover border border-slate-300 shadow-sm group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <h4 className="font-bold text-slate-900">{review.name}</h4>
-                    <p className="text-xs text-cyan-400 font-medium">{review.role} • {review.course}</p>
+                    <p className="text-xs text-[#1e3a5f] font-medium">{review.role} • {review.course}</p>
                   </div>
                 </div>
               </motion.div>
@@ -456,7 +456,7 @@ export default function CoursesPage() {
 
       {/* 6. PREMIUM CTA SECTION */}
       <section className="relative py-24 mx-4 sm:mx-8 lg:mx-auto max-w-7xl mb-24 overflow-hidden rounded-[3rem] shadow-[0_0_100px_rgba(37,99,235,0.2)]">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-indigo-900 to-cyan-900 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a] z-0"></div>
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2000&auto=format&fit=crop')] opacity-10 mix-blend-overlay object-cover"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
         
@@ -467,14 +467,14 @@ export default function CoursesPage() {
             viewport={{ once: true }}
             className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/20 shadow-2xl"
           >
-            <Stethoscope size={40} className="text-cyan-300" />
+            <Stethoscope size={40} className="text-blue-300" />
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6 drop-shadow-lg">Your Medical Career <br/>Starts Here</h2>
           <p className="text-xl text-blue-100/90 max-w-2xl mb-10 font-light">Join thousands of successful healthcare professionals. Limited seats available for the upcoming academic session.</p>
           
           <div className="flex flex-col sm:flex-row gap-5 mt-4">
             <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}>
-              <Link to="/contact" className="px-10 py-5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-black text-lg shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-colors duration-300 flex items-center justify-center gap-2 group">
+              <Link to="/contact" className="px-10 py-5 rounded-full bg-[#1e3a5f] hover:bg-[#2a4d75] text-white font-black text-lg shadow-[0_0_40px_rgba(30,58,95,0.6)] transition-colors duration-300 flex items-center justify-center gap-2 group">
                 Apply Now <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </motion.div>
