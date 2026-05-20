@@ -1,31 +1,27 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/admin/Login';
-import Dashboard from './pages/admin/Dashboard';
-import { AuthProvider } from './context/AuthContext';
-import PrivateRoute from './routes/PrivateRoute';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import CoursesPage from './pages/CoursesPage';
+import AdmissionPage from './pages/AdmissionPage';
+import GalleryPage from './pages/GalleryPage';
+import FacilitiesPage from './pages/FacilitiesPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="courses" element={<CoursesPage />} />
+        <Route path="admission" element={<AdmissionPage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="facilities" element={<FacilitiesPage />} />
+        <Route path="contact" element={<ContactPage />} />
+      </Route>
+    </Routes>
 
-          {/* Admin routes */}
-          <Route path="/admin/login" element={<Login />} />
-          <Route
-            path="/admin/*"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
   );
 }
 

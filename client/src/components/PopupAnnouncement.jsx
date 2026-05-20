@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaTimes } from 'react-icons/fa';
-import { newsImage } from '../data/homepageData';
+import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import medicalFlyer from '../assets/medical_flyer.jpg';
 
 export default function PopupAnnouncement() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,60 +23,66 @@ export default function PopupAnnouncement() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-2 backdrop-blur-sm sm:items-center sm:p-4"
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-[60] flex items-center justify-center min-h-[100vh] p-4 sm:p-6 lg:p-8 overflow-y-auto"
           onClick={() => setIsOpen(false)}
         >
+          {/* Cinematic Background */}
+          <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-lg"></div>
+          
+          {/* Subtle medical patterns */}
+          <div className="fixed inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none"></div>
+
+          {/* Premium blue spotlight glow */}
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[1000px] aspect-square bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+          <div className="fixed bottom-0 right-0 w-[50vw] aspect-square bg-sky-400/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+          {/* Main Content Container */}
           <motion.div
-            initial={{ scale: 0.85, opacity: 0, y: 20 }}
+            initial={{ scale: 0.95, opacity: 0, y: 40 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.85, opacity: 0, y: 20 }}
-            transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative flex max-h-[calc(100svh-1rem)] w-full max-w-[42rem] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:max-h-[90vh] sm:rounded-3xl"
+            exit={{ scale: 0.95, opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
+            className="relative w-full max-w-[850px] z-10 flex flex-col items-center my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md transition-colors hover:bg-white sm:right-4 sm:top-4 sm:h-10 sm:w-10"
+              className="absolute -top-5 -right-5 md:-top-7 md:-right-7 z-50 inline-flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-slate-900 text-white shadow-[0_0_20px_rgba(59,130,246,0.6)] border border-blue-400/40 transition-all duration-300 hover:bg-slate-800 hover:scale-110 active:scale-95"
               aria-label="Close popup"
             >
-              <FaTimes className="text-lg" />
+              <X size={24} />
             </button>
 
-            {/* Image */}
-            <div className="overflow-hidden bg-slate-50 sm:aspect-auto aspect-[3/4]">
-              <img
-                src={newsImage}
-                alt="Admissions Open 2026-27"
-                className="h-full w-full object-contain sm:h-auto sm:max-h-[58vh]"
-              />
-            </div>
+            {/* Poster Container with floating animation and glassmorphism */}
+            <motion.div
+              animate={{ y: [-8, 8, -8] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative w-full rounded-2xl md:rounded-[2.5rem] bg-white/5 p-2 md:p-5 backdrop-blur-2xl border border-white/10 shadow-[0_0_60px_-15px_rgba(37,99,235,0.5)] hover:shadow-[0_0_80px_-10px_rgba(59,130,246,0.6)] transition-shadow duration-500"
+            >
+              <Link 
+                to="/contact" 
+                onClick={() => setIsOpen(false)}
+                className="relative w-full flex justify-center items-center overflow-hidden rounded-xl md:rounded-[2rem] group cursor-pointer bg-slate-950"
+              >
+                <img
+                  src={medicalFlyer}
+                  alt="APJ Paramedical Admissions Open Flyer"
+                  className="w-full h-auto max-h-[70vh] object-contain block transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                
+                {/* Glow border overlay on image */}
+                <div className="absolute inset-0 rounded-xl md:rounded-[2rem] ring-1 ring-inset ring-white/20 group-hover:ring-blue-400/60 transition-all duration-500 pointer-events-none"></div>
 
-            {/* Call to Action */}
-            <div className="flex-1 overflow-y-auto bg-gradient-to-r from-blue-50 to-white p-3 sm:p-6">
-              <h3 className="mb-2 text-base font-bold text-slate-900 sm:mb-3 sm:text-xl">
-                🎓 Admissions Open for 2026-27
-              </h3>
-              <p className="mb-4 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
-                Don't miss this opportunity! Apply now for BMLT, DMLT, DOA, CCH and other paramedical programs at APJ Institute Dantewada.
-              </p>
-              <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
-                <a
-                  href="#admission"
-                  onClick={() => setIsOpen(false)}
-                  className="inline-flex flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-blue-700 to-sky-500 px-4 py-2.5 text-sm font-bold text-white shadow-soft transition hover:scale-[1.02] sm:px-5 sm:py-3"
-                >
-                  Apply Now
-                </a>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="inline-flex flex-1 items-center justify-center rounded-xl border-2 border-slate-300 px-4 py-2.5 text-sm font-bold text-slate-900 transition hover:bg-slate-50 sm:px-5 sm:py-3"
-                >
-                  Learn More Later
-                </button>
-              </div>
-            </div>
+                {/* Premium overlay badge */}
+                <div className="absolute inset-0 bg-blue-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[4px]">
+                  <span className="bg-gradient-to-r from-blue-600 to-sky-500 text-white text-sm md:text-lg font-black tracking-[0.2em] uppercase px-8 py-4 rounded-full shadow-[0_20px_40px_rgba(37,99,235,0.6)] border border-white/20 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">
+                    Apply Admission Online
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}

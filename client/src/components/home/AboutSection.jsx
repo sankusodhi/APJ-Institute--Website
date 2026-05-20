@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { buildingImage } from '../../data/homepageData';
 
 export default function AboutSection() {
@@ -28,9 +29,9 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <a href="#contact" className="mt-8 inline-flex rounded-full bg-gradient-to-r from-blue-700 to-sky-500 px-7 py-3.5 text-sm font-bold text-white shadow-soft transition hover:scale-[1.02]">
+          <Link to="/contact" className="mt-8 inline-flex rounded-full bg-gradient-to-r from-blue-700 to-sky-500 px-7 py-3.5 text-sm font-bold text-white shadow-soft transition hover:scale-[1.02]">
             Read More
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
