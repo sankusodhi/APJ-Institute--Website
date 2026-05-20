@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 import { admissionSteps } from '../../data/homepageData';
 
 export default function AdmissionSection() {
@@ -25,10 +24,10 @@ export default function AdmissionSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">Step {index + 1}</p>
                 <h3 className="mt-2 text-lg font-bold text-slate-900">{step.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
-                <Link to="/contact" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
                   Get Started
                   <FiArrowRight />
-                </Link>
+                </a>
               </div>
             </motion.article>
           ))}
