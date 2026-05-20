@@ -28,7 +28,7 @@ export default function PopupAnnouncement() {
           onClick={() => setIsOpen(false)}
         >
           {/* Simple Dark Overlay */}
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-md"></div>
 
           {/* Main Content Container */}
           <motion.div
@@ -36,7 +36,7 @@ export default function PopupAnnouncement() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 40 }}
             transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
-            className="relative w-full max-w-[850px] z-10 flex flex-col items-center my-auto"
+            className="relative z-10 flex flex-col items-center my-auto mx-4 max-w-[90vw]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -50,17 +50,17 @@ export default function PopupAnnouncement() {
 
             {/* Just the Poster with Blue Glow */}
             <motion.div
-              className="relative w-full shadow-[0_0_80px_rgba(59,130,246,0.6)]"
+              className="relative shadow-[0_0_60px_rgba(37,99,235,0.5)] rounded-2xl md:rounded-[2rem]"
             >
               <Link 
                 to="/contact" 
                 onClick={() => setIsOpen(false)}
-                className="relative w-full block cursor-pointer"
+                className="relative block cursor-pointer rounded-2xl md:rounded-[2rem] overflow-hidden"
               >
                 <img
                   src={medicalFlyer}
                   alt="APJ Paramedical Admissions Open Flyer"
-                  className="w-full h-auto max-h-[85vh] object-contain block"
+                  className="w-auto h-auto max-h-[85vh] object-contain block rounded-2xl md:rounded-[2rem]"
                 />
               </Link>
             </motion.div>
