@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 import { courses } from '../../data/homepageData';
 
 export default function CoursesSection() {
@@ -23,10 +22,10 @@ export default function CoursesSection() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-900">{course.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{course.description}</p>
-                <Link to="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                <a href="#contact" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
                   Learn More
                   <FiArrowRight />
-                </Link>
+                </a>
               </div>
             </motion.article>
           ))}

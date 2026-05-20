@@ -1,27 +1,25 @@
-import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import HomePage from './pages/Home';
-import AboutPage from './pages/AboutPage';
-import CoursesPage from './pages/CoursesPage';
-import AdmissionPage from './pages/AdmissionPage';
-import GalleryPage from './pages/GalleryPage';
-import FacilitiesPage from './pages/FacilitiesPage';
-import ContactPage from './pages/ContactPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import AuthSplitScreen from './pages/AuthSplitScreen';
+import UserDashboard from './pages/UserDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="courses" element={<CoursesPage />} />
-        <Route path="admission" element={<AdmissionPage />} />
-        <Route path="gallery" element={<GalleryPage />} />
-        <Route path="facilities" element={<FacilitiesPage />} />
-        <Route path="contact" element={<ContactPage />} />
-      </Route>
-    </Routes>
-
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/auth" element={<AuthSplitScreen />} />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
