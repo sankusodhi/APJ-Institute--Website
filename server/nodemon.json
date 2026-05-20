@@ -1,0 +1,18 @@
+{
+  "watch": [
+    "*.js",
+    "config",
+    "controllers",
+    "routes",
+    "middleware",
+    "cron"
+  ],
+  "ignore": [
+    "node_modules/**",
+    "../client/**",
+    "client/**",
+    "dist/**",
+    "uploads/**"
+  ],
+  "ext": "js,json,mjs"
+}

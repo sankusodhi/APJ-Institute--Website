@@ -2,6 +2,8 @@
 // Notification management controllers
 
 import { getPrismaClient } from "../config/database.js";
+import { parseBoolean } from "../utils/helpers.js";
+import { getIO } from '../socket.js';
 
 const prisma = getPrismaClient();
 
@@ -13,16 +15,17 @@ const prisma = getPrismaClient();
  */
 export const createNotification = async (req, res, next) => {
   try {
-    const { title, message, type = "info", priority = 0, isActive = true } = req.body;
+    const { title, message, content, type = "info", priority = 0, isActive = true } = req.body;
+    const finalMessage = content || message;
 
     // Create notification
     const notification = await prisma.notification.create({
       data: {
         title,
-        message,
+        message: finalMessage,
         type,
-        priority,
-        isActive,
+        priority: Number(priority),
+        isActive: parseBoolean(isActive, true),
       },
     });
 
@@ -31,6 +34,10 @@ export const createNotification = async (req, res, next) => {
       message: "Notification created successfully",
       data: notification,
     });
+    try {
+      const io = getIO();
+      if (io) io.emit('new_notification', notification);
+    } catch (e) {}
   } catch (error) {
     next(error);
   }
@@ -121,15 +128,15 @@ export const getNotificationById = async (req, res, next) => {
 export const updateNotification = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { title, message, type, priority, isActive } = req.body;
+    const { title, message, content, type, priority, isActive } = req.body;
 
     // Build update data
     const updateData = {};
     if (title !== undefined) updateData.title = title;
-    if (message !== undefined) updateData.message = message;
+    if (message !== undefined || content !== undefined) updateData.message = content || message;
     if (type !== undefined) updateData.type = type;
-    if (priority !== undefined) updateData.priority = priority;
-    if (isActive !== undefined) updateData.isActive = isActive;
+    if (priority !== undefined) updateData.priority = Number(priority);
+    if (isActive !== undefined) updateData.isActive = parseBoolean(isActive);
 
     // Update notification
     const notification = await prisma.notification.update({
@@ -179,7 +186,7 @@ export const getActiveNotifications = async (req, res, next) => {
   try {
     const notifications = await prisma.notification.findMany({
       where: { isActive: true },
-      orderBy: { priority: "desc", createdAt: "desc" },
+      orderBy: [{ priority: "desc" }, { createdAt: "desc" }],
       take: 10,
     });
 

@@ -2,7 +2,7 @@
 // Gallery management controllers for image uploads
 
 import { getPrismaClient } from "../config/database.js";
-import { getFileUrl } from "../utils/helpers.js";
+import { getFileUrl, parseBoolean } from "../utils/helpers.js";
 
 const prisma = getPrismaClient();
 
@@ -16,6 +16,7 @@ const prisma = getPrismaClient();
 export const uploadGalleryImage = async (req, res, next) => {
   try {
     const { title, category } = req.body;
+    const fallbackTitle = req.file?.originalname?.replace(/\.[^.]+$/, "") || "Gallery Image";
 
     // Check if file is uploaded
     if (!req.file) {
@@ -28,10 +29,10 @@ export const uploadGalleryImage = async (req, res, next) => {
     // Create gallery entry
     const gallery = await prisma.gallery.create({
       data: {
-        title,
+        title: title?.trim() || fallbackTitle,
         image: getFileUrl(req.file.filename),
         category: category || null,
-        isActive: true,
+        isActive: parseBoolean(req.body.isActive, true),
       },
     });
 
@@ -137,7 +138,7 @@ export const updateGalleryImage = async (req, res, next) => {
     const updateData = {};
     if (title !== undefined) updateData.title = title;
     if (category !== undefined) updateData.category = category;
-    if (isActive !== undefined) updateData.isActive = isActive;
+    if (isActive !== undefined) updateData.isActive = parseBoolean(isActive);
     if (req.file) {
       updateData.image = getFileUrl(req.file.filename);
     }

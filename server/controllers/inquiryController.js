@@ -2,6 +2,7 @@
 // Inquiry management controllers
 
 import { getPrismaClient } from "../config/database.js";
+import { getIO } from '../socket.js';
 
 const prisma = getPrismaClient();
 
@@ -30,6 +31,12 @@ export const createInquiry = async (req, res, next) => {
       message: "Inquiry submitted successfully",
       data: inquiry,
     });
+    try {
+      const io = getIO();
+      if (io) io.emit('new_inquiry', inquiry);
+    } catch (e) {
+      // ignore socket errors
+    }
   } catch (error) {
     next(error);
   }

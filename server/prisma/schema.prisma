@@ -16,10 +16,12 @@ model Admin {
   email     String  @unique @db.VarChar(255)
   password  String  @db.VarChar(255)
   name      String  @db.VarChar(255)
-  role      String  @default("admin") @db.VarChar(50)
+  role Role @default(ADMIN)
   isActive  Boolean @default(true)
-  
-  // Timestamps
+
+  notifications Notification[]
+  activityLogs  ActivityLog[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -33,11 +35,12 @@ model Inquiry {
   email     String  @db.VarChar(255)
   phone     String  @db.VarChar(20)
   message   String  @db.LongText
-  status    String  @default("new") @db.VarChar(50) // new, read, resolved
+  status InquiryStatus @default(NEW)
   
   // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
 
   @@map("inquiries")
   @@index([email])
@@ -46,20 +49,17 @@ model Inquiry {
 
 // Notification Model - For live notifications and announcements
 model Notification {
-  id        Int     @id @default(autoincrement())
-  title     String  @db.VarChar(255)
-  message   String  @db.LongText
-  type      String  @default("info") @db.VarChar(50) // info, warning, success, error
-  priority  Int     @default(0) // 0 = low, 1 = medium, 2 = high
-  isActive  Boolean @default(true)
-  
-  // Timestamps
+  id        Int    @id @default(autoincrement())
+  title     String
+  message   String
+  type      String @default("info")
+  priority  Int    @default(0)
+
+  adminId   Int?
+  admin     Admin? @relation(fields: [adminId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@map("notifications")
-  @@index([createdAt])
-  @@index([isActive])
 }
 
 // Event Model - For managing college events
@@ -117,4 +117,73 @@ model Faculty {
   @@map("faculties")
   @@index([department])
   @@index([isActive])
+}
+
+// Course Model - For managing course information
+model Course {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique @db.VarChar(255)
+  title       String   @db.VarChar(255)
+  duration    String   @db.VarChar(100)
+  eligibility String   @db.VarChar(255)
+  description String   @db.LongText
+  image       String?  @db.VarChar(255)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("courses")
+  @@index([slug])
+  @@index([title])
+}
+
+// Testimonial Model - For student feedback and public testimonials
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  message   String   @db.LongText
+  course    String   @db.VarChar(255)
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonials")
+  @@index([approved])
+  @@index([course])
+}
+
+// FAQ Model - For managing frequently asked questions
+model FAQ {
+  id        Int      @id @default(autoincrement())
+  question  String   @db.LongText
+  answer    String   @db.LongText
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+  @@index([createdAt])
+}
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  action    String
+  entity    String
+  entityId  Int?
+
+  adminId   Int
+  admin     Admin    @relation(fields: [adminId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([adminId])
+  @@index([createdAt])
+}
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum InquiryStatus {
+  NEW
+  READ
+  RESOLVED
 }

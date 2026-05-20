@@ -108,6 +108,45 @@ export const isValidPhone = (phone) => {
 };
 
 /**
+ * Normalize common string/number boolean inputs.
+ * @param {unknown} value - Value to normalize
+ * @param {boolean} fallback - Value to return when input is undefined/null
+ * @returns {boolean}
+ */
+export const parseBoolean = (value, fallback = false) => {
+  if (value === undefined || value === null || value === '') {
+    return fallback;
+  }
+
+  if (typeof value === 'boolean') {
+    return value;
+  }
+
+  if (typeof value === 'number') {
+    return value !== 0;
+  }
+
+  const normalized = String(value).trim().toLowerCase();
+  return ['true', '1', 'yes', 'on'].includes(normalized);
+};
+
+/**
+ * Convert a string into a URL-friendly slug.
+ * @param {string} value
+ * @returns {string}
+ */
+export const slugify = (value) => {
+  if (!value) return '';
+
+  return String(value)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+};
+
+/**
  * Paginate array or query results
  * @param {Array|object} data - Data to paginate
  * @param {number} page - Page number (1-indexed)
@@ -141,5 +180,7 @@ export default {
   getFileUrl,
   isValidEmail,
   isValidPhone,
+  parseBoolean,
+  slugify,
   paginate,
 };
