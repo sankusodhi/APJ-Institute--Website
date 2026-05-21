@@ -6,6 +6,9 @@ import {
   CheckCircle2, ArrowRight, ActivitySquare, Award, GraduationCap, Building
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TopHeaderBar from '../components/home/TopHeaderBar';
+import Navbar from '../components/home/Navbar';
+import Footer from '../components/home/Footer';
 
 const paramedicalCourses = [
   {
@@ -146,6 +149,8 @@ export default function CoursesPage() {
 
   return (
     <div className="bg-slate-100 min-h-screen text-slate-800 overflow-x-hidden selection:bg-blue-900/30">
+      <TopHeaderBar />
+      <Navbar />
       
       {/* 1. CINEMATIC HERO SECTION */}
       <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-32 overflow-hidden bg-slate-900 border-b border-slate-800">
@@ -491,6 +496,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 }

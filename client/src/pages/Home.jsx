@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Navbar from '../components/home/Navbar';
 import HeroSlider from '../components/home/HeroSlider';
 import HighlightCards from '../components/home/HighlightCards';
 import UpdatesSection from '../components/home/UpdatesSection';
@@ -14,6 +15,7 @@ import ContactSection from '../components/home/ContactSection';
 export default function Home() {
   return (
     <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+      <Navbar />
       <HeroSlider />
       <HighlightCards />
       <UpdatesSection />

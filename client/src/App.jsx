@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Courses from './pages/Courses';
+import CoursesPage from './pages/CoursesPage';
 import CourseDetails from './pages/CourseDetails';
 import Faculty from './pages/Faculty';
+import About from './pages/About';
+import FacilitiesPage from './pages/FacilitiesPage';
+import MainContactPage from './pages/ContactPage';
+import AdmissionPage from './pages/AdmissionPage';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
 import StudentLogin from './pages/student/StudentLogin';
@@ -29,8 +33,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/courses/:courseId" element={<CourseDetails />} />
+          <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/contact" element={<MainContactPage />} />
+          <Route path="/admission" element={<AdmissionPage />} />
           <Route path="/academics/faculty" element={<Faculty />} />
 
           {/* Admin routes */}

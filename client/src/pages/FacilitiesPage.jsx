@@ -6,6 +6,9 @@ import {
   Sparkles, Play, ChevronRight, Zap, ShieldCheck, Award, GraduationCap, Monitor,
   Syringe, ArrowRight, Star
 } from 'lucide-react';
+import TopHeaderBar from '../components/home/TopHeaderBar';
+import Navbar from '../components/home/Navbar';
+import Footer from '../components/home/Footer';
 
 /* ─── Advanced Magnetic Button Component ─── */
 const MagneticButton = ({ children, className, onClick }) => {
@@ -78,8 +81,21 @@ export default function FacilitiesPage() {
     { title: "Premium Hostels", desc: "Secure living spaces.", icon: <Home size={28}/>, img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800&auto=format&fit=crop", span: "md:col-span-7 md:row-span-1" },
   ];
 
+  const features = [
+    { title: "24/7 Library", desc: "Access to 50k+ medical resources.", icon: <BookOpen size={24}/> },
+    { title: "Smart Labs", desc: "Industry-grade testing equipment.", icon: <Microscope size={24}/> },
+    { title: "Premium Hostels", desc: "Safe, secure living spaces.", icon: <Home size={24}/> },
+    { title: "Cafeteria", desc: "Hygienic and nutritious meals.", icon: <Coffee size={24}/> },
+    { title: "Transport", desc: "Campus-wide bus services.", icon: <Bus size={24}/> },
+    { title: "Recreation", desc: "Sports and wellness facilities.", icon: <Users size={24}/> },
+  ];
+
   return (
     <div ref={containerRef} className="bg-[#020617] min-h-screen text-slate-200 overflow-hidden font-sans selection:bg-cyan-500/30">
+      <div className="relative z-[100]">
+        <TopHeaderBar />
+        <Navbar />
+      </div>
       
       {/* Ambient Global Glows */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -376,6 +392,9 @@ export default function FacilitiesPage() {
         </motion.div>
       </section>
 
+      <div className="relative z-50">
+        <Footer />
+      </div>
     </div>
   );
 }
