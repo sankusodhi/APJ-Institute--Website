@@ -3,10 +3,8 @@ import Navbar from '../components/home/Navbar';
 import HeroSlider from '../components/home/HeroSlider';
 import HighlightCards from '../components/home/HighlightCards';
 import UpdatesSection from '../components/home/UpdatesSection';
-import AdmissionSection, { AdmissionSectionWithVideo } from '../components/home/AdmissionSection';
+import AdmissionSection from '../components/home/AdmissionSection';
 import AboutSection from '../components/home/AboutSection';
-import FacultySection from '../components/home/FacultySection';
-import EventsSection from '../components/home/EventsSection';
 import CoursesSection from '../components/home/CoursesSection';
 import GallerySection from '../components/home/GallerySection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
@@ -19,10 +17,8 @@ export default function Home() {
       <HeroSlider />
       <HighlightCards />
       <UpdatesSection />
-      <AdmissionSectionWithVideo />
+      <AdmissionSection />
       <AboutSection />
-      <FacultySection />
-      <EventsSection />
       <CoursesSection />
       <GallerySection />
       <TestimonialsSection />
