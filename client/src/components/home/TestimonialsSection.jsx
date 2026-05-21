@@ -1,8 +1,39 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaStar } from 'react-icons/fa';
-import { testimonials } from '../../data/homepageData';
+import { testimonials as fallbackTestimonials } from '../../data/homepageData';
+import api from '../../services/api';
 
 export default function TestimonialsSection() {
+  const [remoteTestimonials, setRemoteTestimonials] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    api.get('/testimonials')
+      .then((response) => {
+        if (!isMounted) return;
+        const list = Array.isArray(response.data?.data) ? response.data.data : [];
+        setRemoteTestimonials(list);
+      })
+      .catch(() => {
+        if (isMounted) setRemoteTestimonials([]);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const displayTestimonials = remoteTestimonials.length
+    ? remoteTestimonials.map((item, index) => ({
+        name: item.name,
+        role: item.course,
+        quote: item.message,
+        image: fallbackTestimonials[index % fallbackTestimonials.length]?.image,
+      }))
+    : fallbackTestimonials;
+
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -12,7 +43,7 @@ export default function TestimonialsSection() {
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {testimonials.map((item, index) => (
+          {displayTestimonials.map((item, index) => (
             <motion.article key={item.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.35, delay: index * 0.05 }} className="rounded-[1.8rem] border border-blue-100 bg-gradient-to-b from-white to-blue-50 p-6 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)]">
               <div className="flex items-center gap-4">
                 <img src={item.image} alt={item.name} className="h-16 w-16 rounded-full object-cover ring-4 ring-white" loading="lazy" />
