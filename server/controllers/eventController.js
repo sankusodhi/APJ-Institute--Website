@@ -2,7 +2,8 @@
 // Event management controllers
 
 import { getPrismaClient } from "../config/database.js";
-import { getFileUrl } from "../utils/helpers.js";
+import { getFileUrl, parseBoolean } from "../utils/helpers.js";
+import { getIO } from '../socket.js';
 
 const prisma = getPrismaClient();
 
@@ -26,7 +27,7 @@ export const createEvent = async (req, res, next) => {
         date: new Date(date),
         location,
         image,
-        isActive: true,
+        isActive: parseBoolean(req.body.isActive, true),
       },
     });
 
@@ -35,6 +36,10 @@ export const createEvent = async (req, res, next) => {
       message: "Event created successfully",
       data: event,
     });
+    try {
+      const io = getIO();
+      if (io) io.emit('new_event', event);
+    } catch (e) {}
   } catch (error) {
     next(error);
   }
@@ -131,7 +136,7 @@ export const updateEvent = async (req, res, next) => {
     if (description !== undefined) updateData.description = description;
     if (date !== undefined) updateData.date = new Date(date);
     if (location !== undefined) updateData.location = location;
-    if (isActive !== undefined) updateData.isActive = isActive;
+    if (isActive !== undefined) updateData.isActive = parseBoolean(isActive);
     if (req.file) {
       updateData.image = getFileUrl(req.file.filename);
     }

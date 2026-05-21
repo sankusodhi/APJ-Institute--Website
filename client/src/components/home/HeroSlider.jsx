@@ -14,7 +14,7 @@ export default function HeroSlider() {
         {heroSlides.map((slide) => (
           <SwiperSlide key={slide.title}>
             <div className="relative h-[74vh] min-h-[560px] w-full">
-              <img src={slide.image} alt={slide.title} className="h-full w-full object-cover" loading="eager" />
+              <img src={slide.image} alt={slide.title} className="h-full w-full object-cover hero-kenburns" loading="eager" />
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/65 to-blue-950/20" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.25),transparent_35%)]" />
 

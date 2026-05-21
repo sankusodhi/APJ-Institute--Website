@@ -1,4 +1,4 @@
-import posterBanner from '../../WhatsApp Image 2026-05-17 at 9.40.59 PM.jpeg';
+import posterBanner from '../../WhatsApp Image 2026-05-19 at 6.06.32 PM.jpeg';
 import classroomImage from '../../WhatsApp Image 2026-05-17 at 9.41.02 PM.jpeg';
 import labCollageImage from '../../WhatsApp Image 2026-05-17 at 9.41.19 PM.jpeg';
 import instituteBuildingImage from '../../WhatsApp Image 2026-05-17 at 9.41.22 PM.jpeg';
@@ -14,7 +14,7 @@ import feePaymentImage from '../../fees.webp';
 import confirmationImage from '../../receipt.webp';
 import admissionSupportImage from '../components/home/WhatsApp Image 2026-05-17 at 9.41.14 PM.jpeg';
 import admissionCampusImage from '../../WhatsApp Image 2026-05-17 at 9.41.22 PM.jpeg';
-import newsImage from '../../WhatsApp Image 2026-05-17 at 9.40.59 PM.jpeg';
+import newsImage from '../../WhatsApp Image 2026-05-19 at 6.06.32 PM.jpeg';
 
 export const heroSlides = [
   {
@@ -44,11 +44,11 @@ export const heroSlides = [
 ];
 
 export const highlights = [
-  { title: 'Best Faculty', description: 'Experienced instructors focused on practical healthcare education.', icon: 'faculty' },
-  { title: '10 Years Excellence', description: 'A strong track record of academic commitment and trust.', icon: 'excellence' },
-  { title: 'Social Activities', description: 'Community programs that reinforce responsibility and leadership.', icon: 'activity' },
-  { title: 'Placements', description: 'Dedicated support for industry-ready career opportunities.', icon: 'placement' },
-  { title: 'Highest Package', description: 'Merit-driven outcomes that help students move forward faster.', icon: 'package' },
+  { title: 'Modern Smart Classrooms', description: 'Comfortable, technology-enabled classrooms designed for focused and interactive learning.', icon: 'faculty' },
+  { title: 'Advanced Computer & Digital Lab', description: 'Hands-on computer and digital lab access for practical skill development and modern training.', icon: 'excellence' },
+  { title: 'Experienced & Qualified Teachers', description: 'Dedicated faculty members who guide students with clarity, care, and subject expertise.', icon: 'activity' },
+  { title: 'Safe Hostel Facility', description: 'Secure and student-friendly hostel support for boys and girls with a disciplined environment.', icon: 'placement' },
+  { title: 'Library & E-Learning Access', description: 'Study resources, reference books, and digital learning support to strengthen academic performance.', icon: 'package' },
 ];
 
 export const admissionSteps = [
@@ -95,22 +95,24 @@ export const admissionSteps = [
 ];
 
 export const courses = [
-  { title: 'BMLT', duration: '2 Years', description: 'Bachelor-level training in medical diagnostics and laboratory sciences.', image: buildingImage },
-  { title: 'DMLT', duration: '2 Years', description: 'Diploma program for foundation skills in clinical laboratory work.', image: labCollageImage },
-  { title: 'Pharmacy', duration: '2 Years', description: 'Practical pharmaceutical training with patient care focus.', image: classroomImage },
-  { title: 'Nursing', duration: '3 Years', description: 'Nursing education built for clinical compassion and competence.', image: instituteBuildingImage },
-  { title: 'Ophthalmic Assistant', duration: '2 Years', description: 'Focused learning for eye care support and clinical assistance.', image: classroomImage },
-  { title: 'Medical Lab Technician', duration: '2 Years', description: 'Job-ready diagnostics training with robust lab exposure.', image: labCollageImage },
+  { title: 'BMLT', slug: 'bmlt', duration: '2 Years', description: 'Bachelor-level training in medical diagnostics and laboratory sciences.', image: buildingImage },
+  { title: 'DMLT', slug: 'dmlt', duration: '2 Years', description: 'Diploma program for foundation skills in clinical laboratory work.', image: labCollageImage },
+  { title: 'Pharmacy', slug: 'pharmacy', duration: '2 Years', description: 'Practical pharmaceutical training with patient care focus.', image: classroomImage },
+  { title: 'Nursing', slug: 'nursing', duration: '3 Years', description: 'Nursing education built for clinical compassion and competence.', image: instituteBuildingImage },
+  { title: 'Ophthalmic Assistant', slug: 'ophthalmic-assistant', duration: '2 Years', description: 'Focused learning for eye care support and clinical assistance.', image: classroomImage },
+  { title: 'Medical Lab Technician', slug: 'medical-lab-technician', duration: '2 Years', description: 'Job-ready diagnostics training with robust lab exposure.', image: labCollageImage },
 ];
 
 export const galleryImages = [
   buildingImage,
-  posterBanner,
   instituteBuildingImage,
   labCollageImage,
   classroomImage,
   instituteBuildingImage,
 ];
+
+// Export posterBanner so components can detect and replace it with a digital poster
+export { posterBanner };
 
 export const testimonials = [
   { name: 'Aditi Sahu', role: 'BMLT Student', quote: 'The labs, faculty support, and disciplined environment helped me gain practical confidence for my career.', image: classroomStudents1 },
@@ -121,26 +123,38 @@ export const testimonials = [
 export const quickLinks = ['About', 'Courses', 'Admission', 'Gallery', 'Contact'];
 export const courseNames = ['BMLT', 'DMLT', 'Pharmacy', 'Nursing', 'Ophthalmic Assistant'];
 export const liveTickerNotices = [
-  { id: 'ticker-1', label: 'Admissions Open for 2026', category: 'Admission', emphasis: 'Open' },
-  { id: 'ticker-2', label: 'BMLT & DMLT Applications Started', category: 'Applications', emphasis: 'New' },
-  { id: 'ticker-3', label: 'Scholarship Forms Available', category: 'Scholarship', emphasis: 'Important' },
-  { id: 'ticker-4', label: 'New Placement Drive Announcement', category: 'Placement', emphasis: 'Update' },
-  { id: 'ticker-5', label: 'Exam Schedule Released', category: 'Exams', emphasis: 'Alert' },
+  { id: 'ticker-1', label: 'ADMISSION OPEN 2026-27 — Apply Now', category: 'Admission', emphasis: 'Open' },
+  { id: 'ticker-2', label: 'BMLT (3Y), DMLT (2Y), X-RAY (2Y)', category: 'Courses', emphasis: 'Info' },
+  { id: 'ticker-3', label: 'Eligibility: 12th Pass (Biology)', category: 'Eligibility', emphasis: 'Info' },
+  { id: 'ticker-4', label: 'Limited Seats — Contact: 9243758191', category: 'Admission', emphasis: 'Alert' },
+  { id: 'ticker-5', label: 'Download Admission Form / Apply via WhatsApp', category: 'Applications', emphasis: 'Action' },
 ];
 
 export const liveNotificationCards = [
   {
     id: 'notice-1',
-    date: '18 May 2026',
+    date: 'Now — Apply before 31 August 2026',
     category: 'Admission Notice',
-    title: 'Admissions Open for 2026-27',
+    title: 'ADMISSION OPEN 2026-27',
     description:
-      'Online and campus admissions are now open for BMLT, DMLT, DOA, CCH, and allied health programs. Apply now!',
+      'Apply now for BMLT (3 Years), DMLT (2 Years), X-RAY (2 Years) and Lab Technician (Certificate). Limited seats available with scholarship options.',
     isNew: true,
     important: true,
     pdfUrl: '#admission',
     viewUrl: '#admission',
     image: newsImage,
+    courses: [
+      { name: 'BMLT', duration: '3 Years' },
+      { name: 'DMLT', duration: '2 Years' },
+      { name: 'X-RAY', duration: '2 Years' },
+      { name: 'Lab Technician', duration: 'Certificate' },
+    ],
+    eligibility: '12th Pass (Biology)',
+    contact: {
+      whatsapp: ['9243758191', '9340761647'],
+      phone: ['9243758191', '9340761647'],
+      address: 'Shankar Nagar near BSNL Exchange Office, Shanti Mandir Road, Dantewada (C.G.)',
+    },
   },
   {
     id: 'notice-2',
@@ -153,18 +167,6 @@ export const liveNotificationCards = [
     important: false,
     pdfUrl: '#courses',
     viewUrl: '#courses',
-  },
-  {
-    id: 'notice-3',
-    date: '16 May 2026',
-    category: 'Scholarship Alert',
-    title: 'Scholarship Forms Available',
-    description:
-      'Eligible students can download scholarship forms and complete the submission process before the deadline.',
-    isNew: true,
-    important: true,
-    pdfUrl: '#admission',
-    viewUrl: '#admission',
   },
   {
     id: 'notice-4',
@@ -236,4 +238,12 @@ export const liveUpdateCounters = [
   { id: 'counter-2', label: 'Important alerts', value: '08' },
   { id: 'counter-3', label: 'Updates today', value: '05' },
 ];
+
+export const admissionVideo = {
+  title: 'APJ Institute Dantewada — Virtual Tour',
+  description: 'Take a virtual tour of our campus, labs, classrooms, and facilities to get a real feel of APJ Institute Dantewada.',
+  // Replace VIDEO_ID with actual YouTube id or use a hosted mp4 URL
+  src: 'https://www.youtube.com/embed/VIDEO_ID',
+  poster: buildingImage,
+};
 export { buildingImage, newsImage };

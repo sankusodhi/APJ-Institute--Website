@@ -92,15 +92,83 @@ export const validateNotification = [
     .isLength({ min: 3 })
     .withMessage("Title must be at least 3 characters"),
   body("message")
-    .trim()
-    .notEmpty()
-    .withMessage("Message is required"),
+    .optional({ checkFalsy: true })
+    .trim(),
+  body("content")
+    .optional({ checkFalsy: true })
+    .trim(),
+  body("message").custom((value, { req }) => {
+    if (!value && !req.body.content) {
+      throw new Error("Message is required");
+    }
+    return true;
+  }),
   body("type")
     .isIn(["info", "warning", "success", "error"])
     .withMessage("Type must be info, warning, success, or error"),
   body("priority")
     .isInt({ min: 0, max: 2 })
     .withMessage("Priority must be 0, 1, or 2"),
+];
+
+// Course Validations
+export const validateCourse = [
+  body("title")
+    .trim()
+    .notEmpty()
+    .withMessage("Title is required")
+    .isLength({ min: 2 })
+    .withMessage("Title must be at least 2 characters"),
+  body("duration")
+    .trim()
+    .notEmpty()
+    .withMessage("Duration is required"),
+  body("eligibility")
+    .trim()
+    .notEmpty()
+    .withMessage("Eligibility is required"),
+  body("description")
+    .trim()
+    .notEmpty()
+    .withMessage("Description is required")
+    .isLength({ min: 10 })
+    .withMessage("Description must be at least 10 characters"),
+];
+
+// Testimonial Validations
+export const validateTestimonial = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name is required")
+    .isLength({ min: 2 })
+    .withMessage("Name must be at least 2 characters"),
+  body("message")
+    .trim()
+    .notEmpty()
+    .withMessage("Message is required")
+    .isLength({ min: 10 })
+    .withMessage("Message must be at least 10 characters"),
+  body("course")
+    .trim()
+    .notEmpty()
+    .withMessage("Course is required"),
+];
+
+// FAQ Validations
+export const validateFAQ = [
+  body("question")
+    .trim()
+    .notEmpty()
+    .withMessage("Question is required")
+    .isLength({ min: 5 })
+    .withMessage("Question must be at least 5 characters"),
+  body("answer")
+    .trim()
+    .notEmpty()
+    .withMessage("Answer is required")
+    .isLength({ min: 10 })
+    .withMessage("Answer must be at least 10 characters"),
 ];
 
 // Event Validations
@@ -133,13 +201,12 @@ export const validateEvent = [
 // Gallery Validations
 export const validateGallery = [
   body("title")
+    .optional({ checkFalsy: true })
     .trim()
-    .notEmpty()
-    .withMessage("Title is required")
     .isLength({ min: 3 })
     .withMessage("Title must be at least 3 characters"),
   body("category")
-    .optional()
+    .optional({ checkFalsy: true })
     .trim()
     .isLength({ min: 2 })
     .withMessage("Category must be at least 2 characters"),

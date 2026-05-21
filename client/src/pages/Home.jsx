@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import HeroSlider from '../components/home/HeroSlider';
 import HighlightCards from '../components/home/HighlightCards';
 import UpdatesSection from '../components/home/UpdatesSection';
-import AdmissionSection from '../components/home/AdmissionSection';
+import AdmissionSection, { AdmissionSectionWithVideo } from '../components/home/AdmissionSection';
 import AboutSection from '../components/home/AboutSection';
+import FacultySection from '../components/home/FacultySection';
+import EventsSection from '../components/home/EventsSection';
 import CoursesSection from '../components/home/CoursesSection';
 import GallerySection from '../components/home/GallerySection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
@@ -15,8 +17,10 @@ export default function Home() {
       <HeroSlider />
       <HighlightCards />
       <UpdatesSection />
-      <AdmissionSection />
+      <AdmissionSectionWithVideo />
       <AboutSection />
+      <FacultySection />
+      <EventsSection />
       <CoursesSection />
       <GallerySection />
       <TestimonialsSection />

@@ -6,6 +6,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createServer } from 'http';
+import { Server as IOServer } from 'socket.io';
+import { setIO } from './socket.js';
 
 // Import configurations and middleware
 import { initDatabase, disconnectDatabase } from "./config/database.js";
@@ -19,6 +22,10 @@ import notificationRoutes from "./routes/notificationRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import galleryRoutes from "./routes/galleryRoutes.js";
 import facultyRoutes from "./routes/facultyRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
+import testimonialRoutes from "./routes/testimonialRoutes.js";
+import faqRoutes from "./routes/faqRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -38,11 +45,29 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 // ========================
 
 // CORS Configuration
+// Support comma-separated origins in CORS_ORIGIN or CLIENT_URL for dev environments
+const rawOrigins = (process.env.CLIENT_URL || process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:5174');
+const allowedOrigins = rawOrigins.split(',').map((s) => s.trim()).filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl)
+    if (!origin) return callback(null, true);
+    // Allow explicit configured origins
+    if (allowedOrigins.indexOf(origin) !== -1) return callback(null, true);
+    // Allow all localhost origins (different dev ports)
+    try {
+      const url = new URL(origin);
+      if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') return callback(null, true);
+    } catch (e) {
+      // ignore parsing errors and fallthrough to rejection
+    }
+    return callback(new Error('CORS policy: Origin not allowed'));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 };
+
 app.use(cors(corsOptions));
 
 // Body parsing middleware
@@ -92,6 +117,18 @@ app.use("/api/gallery", galleryRoutes);
 // Faculty routes
 app.use("/api/faculty", facultyRoutes);
 
+// Course routes
+app.use("/api/courses", courseRoutes);
+
+// Testimonial routes
+app.use("/api/testimonials", testimonialRoutes);
+
+// FAQ routes
+app.use("/api/faqs", faqRoutes);
+
+// Dashboard analytics
+app.use("/api/admin", analyticsRoutes);
+
 // ========================
 // ERROR HANDLING
 // ========================
@@ -117,8 +154,30 @@ async function startServer() {
     // Initialize cron jobs
     initializeCronJobs();
 
+    // Start HTTP server and attach socket.io
+    const httpServer = createServer(app);
+
+    const io = new IOServer(httpServer, {
+      cors: {
+        origin: process.env.CLIENT_URL || process.env.CORS_ORIGIN || 'http://localhost:5173',
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        credentials: true,
+      },
+      path: '/socket.io',
+    });
+
+    // expose io to controllers
+    setIO(io);
+
+    io.on('connection', (socket) => {
+      console.log('⚡️ Socket connected:', socket.id);
+      socket.on('disconnect', () => {
+        console.log('⚡️ Socket disconnected:', socket.id);
+      });
+    });
+
     // Start listening
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log(`
 ╔═══════════════════════════════════════════════╗
 ║  🚀 APJ INSTITUTE BACKEND SERVER STARTED     ║
@@ -137,6 +196,10 @@ async function startServer() {
    - Events: /api/events/*
    - Gallery: /api/gallery/*
    - Faculty: /api/faculty/*
+  - Courses: /api/courses/*
+  - Testimonials: /api/testimonials/*
+  - FAQs: /api/faqs/*
+  - Analytics: /api/admin/*
 
 🔐 Protected routes require JWT token in Authorization header
 📤 File uploads support: JPEG, PNG, GIF, WebP (max 5MB)

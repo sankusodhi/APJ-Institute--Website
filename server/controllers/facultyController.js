@@ -2,7 +2,7 @@
 // Faculty management controllers
 
 import { getPrismaClient } from "../config/database.js";
-import { getFileUrl } from "../utils/helpers.js";
+import { getFileUrl, parseBoolean } from "../utils/helpers.js";
 
 const prisma = getPrismaClient();
 
@@ -28,7 +28,7 @@ export const createFaculty = async (req, res, next) => {
         department: department || null,
         image,
         bio: bio || null,
-        isActive: true,
+        isActive: parseBoolean(req.body.isActive, true),
       },
     });
 
@@ -138,7 +138,7 @@ export const updateFaculty = async (req, res, next) => {
     if (phone !== undefined) updateData.phone = phone;
     if (department !== undefined) updateData.department = department;
     if (bio !== undefined) updateData.bio = bio;
-    if (isActive !== undefined) updateData.isActive = isActive;
+    if (isActive !== undefined) updateData.isActive = parseBoolean(isActive);
     if (req.file) {
       updateData.image = getFileUrl(req.file.filename);
     }
