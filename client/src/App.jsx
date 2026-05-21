@@ -8,6 +8,7 @@ import About from './pages/About';
 import FacilitiesPage from './pages/FacilitiesPage';
 import MainContactPage from './pages/ContactPage';
 import AdmissionPage from './pages/AdmissionPage';
+import AuthSplitScreen from './pages/AuthSplitScreen';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
 import StudentLogin from './pages/student/StudentLogin';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/facilities" element={<FacilitiesPage />} />
           <Route path="/contact" element={<MainContactPage />} />
           <Route path="/admission" element={<AdmissionPage />} />
+          <Route path="/auth" element={<AuthSplitScreen />} />
           <Route path="/academics/faculty" element={<Faculty />} />
 
           {/* Admin routes */}
