@@ -1,5 +1,5 @@
 import React from "react";
-import logoSvg from "../assets/logo/large.png";
+import logoSvg from "../assets/logo/APJ.jpeg";
 
 const Logo = ({ size = "md", className = "" }) => {
   const sizeClasses = {
