@@ -145,7 +145,7 @@ export default function CoursesPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen text-slate-800 overflow-x-hidden selection:bg-blue-900/30">
+    <div className="bg-slate-100 min-h-screen text-slate-800 overflow-x-hidden selection:bg-blue-900/30">
       
       {/* 1. CINEMATIC HERO SECTION */}
       <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-32 overflow-hidden bg-slate-900 border-b border-slate-800">

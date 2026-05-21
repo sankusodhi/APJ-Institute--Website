@@ -7,12 +7,11 @@ import Logo from '../Logo';
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Courses', href: '#courses' },
-  { label: 'Admission', href: '#admission' },
-  { label: 'News & Announcements', href: '#news' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Facilities', href: '#facilities' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Courses', href: '/courses' },
+  { label: 'Admission', href: '/admission' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Facilities', href: '/facilities' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
@@ -39,35 +38,25 @@ export default function Navbar() {
           </a>
 
           <nav className="hidden items-center gap-1 xl:flex">
-            {navLinks.map((link) => 
-              link.href === '/about' || link.href === '/' ? (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-blue-700 to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:scale-[1.02] hover:shadow-lg md:inline-flex"
             >
               Enquire Now
               <FiArrowRight />
-            </a>
+            </Link>
 
             <Link
               to="/auth"
