@@ -1,0 +1,106 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Outer Circle Background -->
+  <circle cx="100" cy="100" r="95" fill="white" stroke="url(#blueGold)" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- Inner Blue Ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="url(#blueGold)" stroke-width="1" opacity="0.3"/>
+
+  <!-- Decorative Laurel Wreath (Left) -->
+  <path d="M 65 85 Q 60 75 65 65" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="62" cy="80" r="1.5" fill="url(#gold)"/>
+  <circle cx="65" cy="72" r="1.5" fill="url(#gold)"/>
+  <circle cx="60" cy="68" r="1.5" fill="url(#gold)"/>
+
+  <!-- Decorative Laurel Wreath (Right) -->
+  <path d="M 135 85 Q 140 75 135 65" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="138" cy="80" r="1.5" fill="url(#gold)"/>
+  <circle cx="135" cy="72" r="1.5" fill="url(#gold)"/>
+  <circle cx="140" cy="68" r="1.5" fill="url(#gold)"/>
+
+  <!-- Academic Shield/Emblem -->
+  <g id="shield">
+    <!-- Shield background -->
+    <path d="M 100 50 L 120 65 L 120 85 Q 100 100 100 100 Q 100 100 80 85 L 80 65 Z" fill="url(#blueGold)" stroke="#1e40af" stroke-width="1.5"/>
+    
+    <!-- Shield highlight -->
+    <path d="M 100 52 L 118 65 L 118 84 Q 100 98 100 98 Q 100 98 82 84 L 82 65 Z" fill="none" stroke="white" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- Graduation Cap -->
+  <g id="cap" transform="translate(100, 62)">
+    <!-- Cap top (circle) -->
+    <circle cx="0" cy="0" r="8" fill="url(#blueGold)" stroke="#1e40af" stroke-width="1"/>
+    
+    <!-- Cap bill (trapezoid) -->
+    <path d="M -10 2 L 10 2 L 8 6 L -8 6 Z" fill="url(#blueGold)" stroke="#1e40af" stroke-width="1"/>
+    
+    <!-- Tassel -->
+    <line x1="0" y1="0" x2="0" y2="8" stroke="url(#gold)" stroke-width="1.5"/>
+    <circle cx="0" cy="9" r="1.2" fill="url(#gold)"/>
+  </g>
+
+  <!-- Open Book (Center) -->
+  <g id="book" transform="translate(100, 90)">
+    <!-- Left page -->
+    <path d="M -8 -4 L -2 -4 L -2 8 L -8 8 Z" fill="url(#blueGold)" stroke="#1e40af" stroke-width="1" opacity="0.9"/>
+    
+    <!-- Right page -->
+    <path d="M 2 -4 L 8 -4 L 8 8 L 2 8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="1" opacity="0.8"/>
+    
+    <!-- Book spine -->
+    <line x1="-2" y1="-4" x2="-2" y2="8" stroke="#1e40af" stroke-width="0.5" opacity="0.5"/>
+    <line x1="2" y1="-4" x2="2" y2="8" stroke="#1e40af" stroke-width="0.5" opacity="0.5"/>
+    
+    <!-- Pages detail -->
+    <line x1="-7" y1="0" x2="-3" y2="0" stroke="white" stroke-width="0.5" opacity="0.7"/>
+    <line x1="-7" y1="3" x2="-3" y2="3" stroke="white" stroke-width="0.5" opacity="0.7"/>
+    <line x1="3" y1="0" x2="7" y2="0" stroke="white" stroke-width="0.5" opacity="0.7"/>
+    <line x1="3" y1="3" x2="7" y2="3" stroke="white" stroke-width="0.5" opacity="0.7"/>
+  </g>
+
+  <!-- Decorative Bottom Laurel -->
+  <path d="M 75 115 Q 65 120 55 118" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 125 115 Q 135 120 145 118" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Bottom decorative dots -->
+  <circle cx="70" cy="120" r="1" fill="url(#gold)" opacity="0.8"/>
+  <circle cx="100" cy="125" r="1" fill="url(#gold)" opacity="0.8"/>
+  <circle cx="130" cy="120" r="1" fill="url(#gold)" opacity="0.8"/>
+
+  <!-- Text: Institution Name (Curved) -->
+  <defs>
+    <path id="topCurve" d="M 40,100 A 60,60 0 0,1 160,100" fill="none"/>
+    <path id="bottomCurve" d="M 160,100 A 60,60 0 0,1 40,100" fill="none"/>
+  </defs>
+
+  <!-- Top text: "APJ INSTITUTE" -->
+  <text font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="1" fill="#1e40af" opacity="0.9">
+    <textPath href="#topCurve" startOffset="50%" text-anchor="middle">
+      APJ INSTITUTE
+    </textPath>
+  </text>
+
+  <!-- Bottom text: "DANTEWADA" -->
+  <text font-family="Arial, sans-serif" font-size="9" font-weight="600" letter-spacing="0.5" fill="url(#gold)" opacity="0.95">
+    <textPath href="#bottomCurve" startOffset="50%" text-anchor="middle">
+      DANTEWADA
+    </textPath>
+  </text>
+
+  <!-- Center dot accent -->
+  <circle cx="100" cy="135" r="1.5" fill="url(#gold)" opacity="0.7"/>
+</svg>

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 36%, #f8fbff 100%);
+  color: #0f172a;
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.18);
+  color: #0f172a;
+}
+
+.medical-slider .swiper-button-next,
+.medical-slider .swiper-button-prev {
+  color: #ffffff;
+}
+
+.medical-slider .swiper-button-next:after,
+.medical-slider .swiper-button-prev:after {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.medical-slider .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  opacity: 1;
+}
+
+.medical-slider .swiper-pagination-bullet-active {
+  background: #ffffff;
+  transform: scale(1.15);
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-shell:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-track {
+  animation: ticker-scroll 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+.notice-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.notice-scrollbar::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.7);
+  border-radius: 9999px;
+}
+
+.notice-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.85), rgba(239, 68, 68, 0.8));
+  border-radius: 9999px;
+  border: 2px solid rgba(226, 232, 240, 0.7);
+}
+
+.notice-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 99, 235, 0.85) rgba(226, 232, 240, 0.7);
+}
