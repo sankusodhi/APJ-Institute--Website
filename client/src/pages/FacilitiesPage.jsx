@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
   Microscope, ActivitySquare, BookOpen, Home, Coffee, Users, Bus, HeartPulse, 
   Sparkles, Play, ChevronRight, Zap, ShieldCheck, Award, GraduationCap, Monitor,
