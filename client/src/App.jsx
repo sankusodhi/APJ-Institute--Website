@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 import Home from './pages/Home';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetails from './pages/CourseDetails';
@@ -33,15 +34,19 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/courses/:courseId" element={<CourseDetails />} />
-          <Route path="/facilities" element={<FacilitiesPage />} />
-          <Route path="/contact" element={<MainContactPage />} />
-          <Route path="/admission" element={<AdmissionPage />} />
+          {/* Public Routes with Layout (Header, Footer, Popup) */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/courses/:courseId" element={<CourseDetails />} />
+            <Route path="/facilities" element={<FacilitiesPage />} />
+            <Route path="/contact" element={<MainContactPage />} />
+            <Route path="/admission" element={<AdmissionPage />} />
+            <Route path="/academics/faculty" element={<Faculty />} />
+          </Route>
+          
           <Route path="/auth" element={<AuthSplitScreen />} />
-          <Route path="/academics/faculty" element={<Faculty />} />
 
           {/* Admin routes */}
           <Route path="/admin/login" element={<Login />} />

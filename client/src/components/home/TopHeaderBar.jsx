@@ -25,7 +25,7 @@ const contactItems = [
 
 export default function TopHeaderBar() {
   return (
-    <div className="sticky top-0 z-50">
+    <div className="fixed top-0 left-0 right-0 z-[60]">
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

@@ -18,8 +18,18 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+const courseDropdownLinks = [
+  { label: 'All Programs', href: '/courses#courses' },
+  { label: 'Degree Programs', href: '/courses?category=Degree#courses' },
+  { label: 'Diploma Programs', href: '/courses?category=Diploma#courses' },
+  { label: 'Certifications', href: '/courses?category=Certification#courses' },
+  { label: 'Why Choose Us', href: '/courses#why-choose-us' },
+  { label: 'Student Success', href: '/courses#student-success' },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
 
   return (
     <>
@@ -42,11 +52,51 @@ export default function Navbar() {
             </Link>
 
             <nav className="hidden items-center gap-1 xl:flex">
-              {navLinks.map((link) => (
-                <Link key={link.label} to={link.href} className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700">
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.label === 'Courses' ? (
+                  <div key={link.label} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setCoursesOpen((value) => !value)}
+                      className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+                      aria-expanded={coursesOpen}
+                      aria-haspopup="menu"
+                    >
+                      {link.label}
+                      <FiChevronDown className={`text-xs transition ${coursesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {coursesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.18 }}
+                          className="absolute left-1/2 top-full mt-3 w-56 -translate-x-1/2 rounded-3xl border border-blue-100 bg-white p-3 shadow-[0_18px_50px_rgba(15,23,42,0.18)]"
+                        >
+                          <div className="grid gap-1">
+                            {courseDropdownLinks.map((item) => (
+                              <Link
+                                key={item.label}
+                                to={item.href}
+                                onClick={() => setCoursesOpen(false)}
+                                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+                              >
+                                {item.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link key={link.label} to={link.href} className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700">
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
 
             <div className="flex items-center gap-3">
@@ -85,16 +135,56 @@ export default function Navbar() {
           >
             <div className="rounded-3xl border border-blue-100 bg-white p-3 shadow-soft">
               <div className="grid gap-1 sm:grid-cols-2">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {navLinks.map((link) =>
+                  link.label === 'Courses' ? (
+                    <div key={link.label} className="rounded-2xl border border-blue-100 bg-blue-50/60 p-2 sm:col-span-2">
+                      <button
+                        type="button"
+                        onClick={() => setCoursesOpen((value) => !value)}
+                        className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-slate-800"
+                      >
+                        <span>Courses</span>
+                        <FiChevronDown className={`transition ${coursesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      <AnimatePresence>
+                        {coursesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="mt-2 grid gap-1">
+                              {courseDropdownLinks.map((item) => (
+                                <Link
+                                  key={item.label}
+                                  to={item.href}
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setCoursesOpen(false);
+                                  }}
+                                  className="rounded-xl bg-white px-3 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+                                >
+                                  {item.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      to={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </div>
 
               <Link

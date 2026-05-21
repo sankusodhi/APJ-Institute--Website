@@ -5,10 +5,7 @@ import {
   Microscope, Stethoscope, HeartPulse, Activity, Trophy, Star,
   CheckCircle2, ArrowRight, ActivitySquare, Award, GraduationCap, Building
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import TopHeaderBar from '../components/home/TopHeaderBar';
-import Navbar from '../components/home/Navbar';
-import Footer from '../components/home/Footer';
+import { Link, useLocation } from 'react-router-dom';
 
 const paramedicalCourses = [
   {
@@ -123,6 +120,25 @@ const CountUp = ({ to, duration = 2, suffix = "" }) => {
 export default function CoursesPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const category = params.get("category");
+    if (category && categories.includes(category)) {
+      setSelectedCategory(category);
+    } else {
+      setSelectedCategory("All");
+    }
+
+    // Handle hash scrolling
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        setTimeout(() => element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    }
+  }, [location.search, location.hash]);
 
   const filteredCourses = useMemo(() => {
     return paramedicalCourses.filter(course => {
@@ -149,44 +165,43 @@ export default function CoursesPage() {
 
   return (
     <div className="bg-slate-100 min-h-screen text-slate-800 overflow-x-hidden selection:bg-blue-900/30">
-      <TopHeaderBar />
-      <Navbar />
       
       {/* 1. CINEMATIC HERO SECTION */}
-      <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-32 overflow-hidden bg-slate-900 border-b border-slate-800">
+      {/* 1. CINEMATIC HERO SECTION */}
+      <section className="relative min-h-[80vh] flex flex-col justify-center items-center pt-32 pb-24 overflow-hidden bg-slate-900 border-b border-slate-800">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0 bg-slate-900">
           <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-fixed opacity-40"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-900/90"></div>
           {/* Animated Glows */}
           <motion.div 
             animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }} 
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[120px]"
+            className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-blue-600/30 rounded-full blur-[100px]"
           ></motion.div>
           <motion.div 
             animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }} 
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[150px]"
+            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[120px]"
           ></motion.div>
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center mt-12">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 text-center mt-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#1e3a5f] bg-[#1e3a5f]/20 backdrop-blur-md mb-8 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#1e3a5f] bg-[#1e3a5f]/20 backdrop-blur-md mb-6 shadow-sm"
           >
-            <SparklesIcon className="text-white w-4 h-4" />
-            <span className="text-xs font-bold uppercase tracking-widest text-white">Admissions Open 2026-27</span>
+            <SparklesIcon className="text-white w-3.5 h-3.5" />
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white">Admissions Open 2026-27</span>
           </motion.div>
 
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight drop-shadow-2xl"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-5 leading-tight drop-shadow-2xl"
           >
             Build Your Future in <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a5f] to-blue-400 filter drop-shadow-[0_0_20px_rgba(30,58,95,0.5)]">Healthcare</span>
@@ -196,7 +211,7 @@ export default function CoursesPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="mx-auto max-w-2xl text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-light"
+            className="mx-auto max-w-xl text-base md:text-lg text-slate-300 mb-8 leading-relaxed font-light"
           >
             Equipping the next generation of paramedical and nursing professionals with world-class training, modern labs, and 100% placement support.
           </motion.p>
@@ -211,12 +226,12 @@ export default function CoursesPage() {
               href="#courses" 
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="px-8 py-4 rounded-full bg-[#1e3a5f] text-white font-bold text-lg shadow-[0_0_30px_rgba(30,58,95,0.6)] hover:shadow-[0_0_50px_rgba(30,58,95,0.8)] hover:brightness-125 transition-all duration-300"
+              className="px-6 py-3 rounded-full bg-[#1e3a5f] text-white font-bold text-base shadow-[0_0_25px_rgba(30,58,95,0.6)] hover:shadow-[0_0_40px_rgba(30,58,95,0.8)] hover:brightness-125 transition-all duration-300"
             >
               Explore Courses
             </motion.a>
-            <Link to="/contact" className="group px-8 py-4 rounded-full border border-slate-500 bg-white/10 backdrop-blur-md text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
-              Contact Advisor <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+            <Link to="/contact" className="group px-6 py-3 rounded-full border border-slate-500 bg-white/10 backdrop-blur-md text-white font-bold text-base hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
+              Contact Advisor <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </motion.div>
         </div>
@@ -381,7 +396,7 @@ export default function CoursesPage() {
       </section>
 
       {/* 4. WHY CHOOSE US & CAREER OUTCOMES */}
-      <section className="bg-white py-24 relative overflow-hidden border-t border-slate-100">
+      <section id="why-choose-us" className="bg-white py-24 relative overflow-hidden border-t border-slate-100">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -422,7 +437,7 @@ export default function CoursesPage() {
       </section>
 
       {/* 5. STUDENT SUCCESS & TESTIMONIALS */}
-      <section className="py-24 bg-slate-50 relative border-t border-slate-200">
+      <section id="student-success" className="py-24 bg-slate-50 relative border-t border-slate-200">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-slate-200 pb-8">
             <div>
@@ -496,7 +511,6 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }
