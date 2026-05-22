@@ -14,7 +14,6 @@ import AdminSignUp from './pages/AdminSignUp';
 import AuthSplitScreen from './pages/AuthSplitScreen';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
-import CoursesPage from './pages/CoursesPage';
 import FacilitiesPage from './pages/FacilitiesPage';
 import AdmissionPage from './pages/AdmissionPage';
 import CinematicGallery from './pages/CinematicGallery';
