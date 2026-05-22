@@ -150,8 +150,6 @@ export default function FacilitiesPage() {
           </motion.div>
         </div>
 
-        </div>
-
         {/* INFINITE SCROLLING MARQUEE BANNER (Absolute Bottom) */}
         <div className="absolute bottom-0 left-0 w-full z-30 py-5 bg-[#1e3a5f]/95 backdrop-blur-md border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex items-center">
           <motion.div 
@@ -271,20 +269,20 @@ export default function FacilitiesPage() {
                 className="absolute top-1/4 left-1/4 w-[70%] h-[70%] bg-blue-500/30 rounded-full blur-[100px] z-0"
               ></motion.div>
               <div className="absolute top-1/2 right-0 w-[50%] h-[50%] bg-cyan-400/20 rounded-full blur-[120px] z-0"></div>
-              <motion.div initial={{ opacity: 0, y: 50, rotate: -5 }} whileInView={{ opacity: 1, y: 0, rotate: -2 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }}
+              <motion.div initial={{ opacity: 0, x: 300, y: -50, rotate: 10 }} whileInView={{ opacity: 1, x: 0, y: 0, rotate: -2 }} viewport={{ once: false, margin: "-50px" }} transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.4 }}
                 className="absolute top-0 right-10 w-[60%] h-[60%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-10 group"
               >
                 <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=800&auto=format&fit=crop" alt="Cafeteria" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
               </motion.div>
               
-              <motion.div initial={{ opacity: 0, y: 50, rotate: 5 }} whileInView={{ opacity: 1, y: 0, rotate: 3 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }}
+              <motion.div initial={{ opacity: 0, x: 300, y: 150, rotate: -10 }} whileInView={{ opacity: 1, x: 0, y: 0, rotate: 3 }} viewport={{ once: false, margin: "-50px" }} transition={{ duration: 1, delay: 0.4, type: "spring", bounce: 0.4 }}
                 className="absolute bottom-10 left-10 w-[65%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20 group"
               >
                 <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800&auto=format&fit=crop" alt="Hostel" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
               </motion.div>
 
               {/* Floating Testimonial Snippet */}
-              <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.8, type: "spring" }}
+              <motion.div initial={{ opacity: 0, x: -100, scale: 0.5 }} whileInView={{ opacity: 1, x: 0, scale: 1 }} viewport={{ once: false }} transition={{ duration: 1, delay: 0.6, type: "spring", bounce: 0.5 }}
                 className="absolute top-1/2 left-0 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white max-w-[250px]"
               >
                 <div className="flex text-amber-400 mb-3 gap-1">
@@ -369,6 +367,13 @@ export default function FacilitiesPage() {
         >
           <div className="relative overflow-hidden rounded-[4rem] bg-gradient-to-br from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a] text-center p-16 md:p-32 shadow-[0_0_100px_rgba(30,58,95,0.3)] border border-[#1e3a5f]/20 group">
             
+            {/* Professional Background Image Overlay */}
+            <img 
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2000&auto=format&fit=crop" 
+              alt="Medical Professionals" 
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-1000" 
+            />
+
             {/* Animated Mesh Gradients inside CTA */}
             <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
               className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay" />
