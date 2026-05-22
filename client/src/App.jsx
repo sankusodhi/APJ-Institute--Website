@@ -30,13 +30,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/facilities" element={<FacilitiesPage />} />
-        <Route path="/admission" element={<AdmissionPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="courses" element={<CoursesPage />} />
+          <Route path="facilities" element={<FacilitiesPage />} />
+          <Route path="admission" element={<AdmissionPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
+        </Route>
+
+        {/* AUTH & ADMIN ROUTES (unchanged) */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/admin-login" element={<AdminLogin />} />
@@ -54,6 +59,7 @@ function App() {
         <Route path="/admin/settings" element={<AdminSettings />} />
         <Route path="/admin/help" element={<AdminHelp />} />
         <Route path="/admin/courses" element={<AdminCourses />} />
+
       </Routes>
     </Router>
   );
