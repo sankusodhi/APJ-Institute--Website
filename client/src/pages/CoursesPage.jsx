@@ -415,10 +415,10 @@ export default function CoursesPage() {
             ].map((feature, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
+                initial={{ opacity: 0, x: -200 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ delay: i * 0.2, type: "spring", bounce: 0.4, duration: 0.8 }}
                 className="bg-slate-50 border border-slate-200 p-6 rounded-3xl hover:bg-white hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] hover:border-blue-300 transition-all duration-300 hover:-translate-y-2 flex flex-col gap-3 group"
               >
                 <div className="w-full h-48 rounded-2xl overflow-hidden mb-2 relative">

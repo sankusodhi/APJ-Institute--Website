@@ -4,6 +4,7 @@ import TopHeaderBar from './home/TopHeaderBar';
 import Navbar from './home/Navbar';
 import Footer from './home/Footer';
 import ScrollToTop from './ScrollToTop';
+import FloatingContactButtons from './FloatingContactButtons';
 
 export default function Layout() {
   return (
@@ -16,6 +17,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingContactButtons />
     </>
   );
 }

@@ -196,9 +196,8 @@ export default function FacilitiesPage() {
                 key={i}
                 initial={{ opacity: 0, scale: 0.9, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className={`group relative rounded-[2.5rem] overflow-hidden bg-white border border-slate-200 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(37,99,235,0.2)] transition-all duration-700 ${item.span}`}
+                className={`group relative rounded-[2.5rem] overflow-hidden bg-white border border-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.3)] hover:border-cyan-400 hover:shadow-[0_0_80px_rgba(34,211,238,0.7)] transition-all duration-700 ${item.span}`}
               >
                 <img src={item.img} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 ease-out" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700"></div>
@@ -339,8 +338,8 @@ export default function FacilitiesPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="group relative p-10 rounded-[3rem] bg-white border border-slate-200 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(37,99,235,0.15)] transition-all duration-500 overflow-hidden"
+              <motion.div key={i} initial={{ opacity: 0, x: -200 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, margin: "-50px" }} transition={{ duration: 0.8, delay: i * 0.15, type: "spring", bounce: 0.4 }}
+                className="group relative p-10 rounded-[3rem] bg-white border border-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.3)] hover:border-cyan-400 hover:shadow-[0_0_80px_rgba(34,211,238,0.7)] transition-all duration-500 overflow-hidden"
               >
                 <img src={feature.img} alt={feature.title} className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-700"></div>
@@ -363,22 +362,28 @@ export default function FacilitiesPage() {
       ════════════════════════════════════════════ */}
       <section className="py-40 relative overflow-hidden">
         <motion.div initial={{ opacity: 0, scale: 0.9, y: 100 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10"
+          className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 group/cta"
         >
-          <div className="relative overflow-hidden rounded-[4rem] bg-gradient-to-br from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a] text-center p-16 md:p-32 shadow-[0_0_100px_rgba(30,58,95,0.3)] border border-[#1e3a5f]/20 group">
+          {/* Intense Outer Glow Aura - Hidden until hovered */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 blur-[80px] opacity-0 group-hover/cta:opacity-60 transition-opacity duration-1000"></div>
+
+          <div className="relative overflow-hidden rounded-[4rem] bg-black text-center p-16 md:p-32 shadow-none group-hover/cta:shadow-[0_0_120px_rgba(34,211,238,0.5)] border border-white/10 group-hover/cta:border-cyan-400/50 transition-all duration-1000">
             
+            {/* Blue Background that fades in on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a] opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000 z-0"></div>
+
             {/* Professional Background Image Overlay */}
             <img 
               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2000&auto=format&fit=crop" 
               alt="Medical Professionals" 
-              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-1000" 
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30 group-hover/cta:opacity-50 group-hover/cta:scale-105 transition-all duration-1000 z-0" 
             />
 
             {/* Animated Mesh Gradients inside CTA */}
             <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay" />
+              className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000 z-0" />
             <motion.div animate={{ rotate: -360, scale: [1, 1.3, 1] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -bottom-[20%] -right-[10%] w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay" />
+              className="absolute -bottom-[20%] -right-[10%] w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none mix-blend-overlay opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000 z-0" />
             
             <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
               <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ type: "spring", delay: 0.4 }}

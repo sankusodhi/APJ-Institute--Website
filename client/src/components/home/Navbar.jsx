@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX, FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -30,6 +30,15 @@ const courseDropdownLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -37,7 +46,11 @@ export default function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.45 }}
-        className="fixed left-0 right-0 top-[52px] z-50 border-b border-blue-100/80 bg-white/90 backdrop-blur-xl shadow-[0_10px_30px_-20px_rgba(15,23,42,0.25)] sm:top-[52px]"
+        className={`fixed left-0 right-0 top-[52px] z-50 transition-all duration-500 sm:top-[52px] ${
+          isScrolled 
+            ? 'border-b border-blue-100/50 bg-white/75 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(15,23,42,0.15)] py-0' 
+            : 'border-b border-transparent bg-white/100 backdrop-blur-none shadow-none py-1'
+        }`}
       >
         <div id="top" className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex h-20 items-center justify-between gap-4">
