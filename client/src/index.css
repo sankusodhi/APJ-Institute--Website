@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -90,3 +90,44 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(37, 99, 235, 0.85) rgba(226, 232, 240, 0.7);
 }
+
+@keyframes cinematic-zoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.animate-cinematic-zoom {
+  animation: cinematic-zoom 8s ease-in-out infinite;
+}
+
+
+
+/* Global Dark Mode Overrides for Demo */
+html.dark body {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+html.dark * {
+  border-color: #334155 !important;
+}
+
+html.dark .bg-white {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-slate-50, html.dark .bg-slate-100 {
+  background-color: #0f172a !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-900, html.dark .text-slate-800, html.dark .text-slate-700 {
+  color: #ffffff !important;
+}
+
+html.dark .text-slate-600, html.dark .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
