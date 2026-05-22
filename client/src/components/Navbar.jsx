@@ -39,6 +39,7 @@ export default function Navbar() {
       ],
     },
     { label: 'Events', href: '/events' },
+    { label: 'News', href: '/news' },
     { label: 'Contact', href: '/contact' },
   ];
 

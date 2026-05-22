@@ -6,6 +6,7 @@ import FacilitiesPage from './pages/FacilitiesPage';
 import AdmissionPage from './pages/AdmissionPage';
 import ContactPage from './pages/ContactPage';
 import GalleryPage from './pages/GalleryPage';
+import NewsPage from './pages/NewsPage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import AuthSplitScreen from './pages/AuthSplitScreen';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admission" element={<AdmissionPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/news" element={<NewsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/auth" element={<AuthSplitScreen />} />
