@@ -71,6 +71,20 @@ export default function Navbar() {
               <FiArrowRight />
             </Link>
 
+            <Link
+              to="/portal"
+              className="hidden md:inline-flex items-center gap-2 rounded-full border-2 border-blue-700 px-5 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/portal"
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-800"
+            >
+              Sign Up
+            </Link>
+
             <button
               type="button"
               aria-label="Open menu"
@@ -109,20 +123,19 @@ export default function Navbar() {
                 </Link>
 
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  <Link
-                    to="/auth"
+                  <button
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 rounded-2xl border-2 border-blue-700 px-4 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
+                    className="w-full rounded-2xl border-2 border-blue-700 bg-white px-4 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50 transition"
                   >
-                    Login
-                  </Link>
-                  <Link
-                    to="/signup"
+                    👤 Login
+                  </button>
+
+                  <button
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-blue-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
+                    className="w-full rounded-2xl border-2 border-blue-700 bg-blue-700 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-800 transition"
                   >
-                    Sign Up
-                  </Link>
+                    🚀 Sign Up
+                  </button>
                 </div>
               </div>
             </motion.div>
