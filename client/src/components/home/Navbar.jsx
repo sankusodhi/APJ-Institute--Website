@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { FiMenu, FiX, FiArrowRight } from 'react-icons/fi';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-=======
->>>>>>> 6bdf3fe (feat: integration of admin/user portal, notices, and UI refinements)
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../Logo';
 
@@ -12,10 +9,7 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Courses', href: '/courses' },
   { label: 'Admission', href: '/admission' },
-<<<<<<< HEAD
   { label: 'News & Announcements', href: '#news' },
-=======
->>>>>>> 6bdf3fe (feat: integration of admin/user portal, notices, and UI refinements)
   { label: 'Gallery', href: '/gallery' },
   { label: 'Facilities', href: '/facilities' },
   { label: 'Contact', href: '/contact' },
@@ -64,17 +58,7 @@ export default function Navbar() {
 
           <nav className="hidden items-center gap-1 xl:flex">
             {navLinks.map((link) => (
-<<<<<<< HEAD
               <NavItem key={link.label} link={link} />
-=======
-              <Link
-                key={link.label}
-                to={link.href}
-                className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
-              >
-                {link.label}
-              </Link>
->>>>>>> 6bdf3fe (feat: integration of admin/user portal, notices, and UI refinements)
             ))}
           </nav>
 
@@ -85,29 +69,8 @@ export default function Navbar() {
             >
               Enquire Now
               <FiArrowRight />
-<<<<<<< HEAD
             </Link>
 
-=======
-            </Link>
-
-            {/* Login Button */}
-            <Link
-              to="/portal"
-              className="hidden md:inline-flex items-center gap-2 rounded-full border-2 border-blue-700 px-5 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
-            >
-              Login
-            </Link>
-
-            {/* Sign Up Button */}
-            <Link
-              to="/portal"
-              className="hidden md:inline-flex items-center gap-2 rounded-full bg-blue-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-800"
-            >
-              Sign Up
-            </Link>
-
->>>>>>> 6bdf3fe (feat: integration of admin/user portal, notices, and UI refinements)
             <button
               type="button"
               aria-label="Open menu"
