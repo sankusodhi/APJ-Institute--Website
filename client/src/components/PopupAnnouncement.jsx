@@ -38,16 +38,16 @@ export default function PopupAnnouncement() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.85, opacity: 0, y: 20 }}
             transition={{ duration: 0.5, type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative flex flex-col items-center justify-center max-h-[95vh] max-w-[95vw] md:max-w-[550px] rounded-3xl bg-[#020617] shadow-[0_0_120px_rgba(37,99,235,0.7)] border border-blue-500/30"
+            className="relative flex flex-col items-center justify-center max-h-[98vh] max-w-[95vw] md:max-w-[900px] rounded-3xl bg-[#020617] shadow-[0_0_120px_rgba(37,99,235,0.7)] border border-blue-500/30"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute -top-4 -right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-700 hover:scale-110 transition-all border-2 border-white"
+              className="absolute -top-4 -right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-700 hover:scale-110 transition-all border-2 border-white"
               aria-label="Close popup"
             >
-              <FaTimes className="text-lg" />
+              <FaTimes className="text-xl" />
             </button>
 
             {/* Template Image */}
@@ -58,7 +58,7 @@ export default function PopupAnnouncement() {
               <img 
                 src="/admission-promo.png" 
                 alt="Admission Promo" 
-                className="w-full h-auto max-h-[90vh] object-contain transition-all duration-500 hover:scale-[1.02] hover:brightness-110" 
+                className="w-full h-auto max-h-[95vh] object-contain transition-all duration-500 hover:scale-[1.02] hover:brightness-110" 
               />
               
               {/* Overlay hint */}
