@@ -13,7 +13,6 @@ export default function SignUp() {
     password: '',
     confirmPassword: '',
     role: 'user',
-    adminPasskey: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -67,22 +66,11 @@ export default function SignUp() {
       newErrors.confirmPassword = 'Passwords do not match';
     }
 
-    if (formData.role === 'admin' && !formData.adminPasskey) {
-      newErrors.adminPasskey = 'Admin passkey is required';
-    }
-
-    if (formData.role === 'admin') {
-      const ADMIN_PASSKEY = 'APJ@2024Admin'; // Secret admin passkey
-      if (formData.adminPasskey !== ADMIN_PASSKEY) {
-        newErrors.adminPasskey = 'Invalid admin passkey';
-      }
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -91,38 +79,13 @@ export default function SignUp() {
 
     setLoading(true);
 
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          fullName: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          birthDate: formData.birthDate,
-          phone: formData.phone,
-          password: formData.password,
-          role: formData.role,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert('Account created successfully! Please login');
-        navigate('/login');
-      } else {
-        setErrors({ server: data.message || 'Sign up failed' });
-      }
-    } catch (error) {
-      setErrors({ server: 'Network error. Please try again.' });
-      console.error('Sign up error:', error);
-    } finally {
+    setTimeout(() => {
+      localStorage.setItem('role', 'user');
+      localStorage.setItem('email', formData.email);
+      alert('✅ Account created successfully! Redirecting to login...');
+      navigate('/login');
       setLoading(false);
-    }
+    }, 500);
   };
 
   return (
@@ -282,67 +245,6 @@ export default function SignUp() {
               )}
             </div>
 
-            {/* Role Selector */}
-            <div className="role-selector signup-role">
-              <label>Register as:</label>
-              <div className="role-options">
-                <div
-                  className={`role-option ${
-                    formData.role === 'user' ? 'active' : ''
-                  }`}
-                  onClick={() =>
-                    setFormData((prev) => ({ ...prev, role: 'user' }))
-                  }
-                >
-                  <input
-                    type="radio"
-                    name="role"
-                    value="user"
-                    checked={formData.role === 'user'}
-                    onChange={handleInputChange}
-                  />
-                  <span>Student/User</span>
-                </div>
-
-                <div
-                  className={`role-option ${
-                    formData.role === 'admin' ? 'active' : ''
-                  }`}
-                  onClick={() =>
-                    setFormData((prev) => ({ ...prev, role: 'admin' }))
-                  }
-                >
-                  <input
-                    type="radio"
-                    name="role"
-                    value="admin"
-                    checked={formData.role === 'admin'}
-                    onChange={handleInputChange}
-                  />
-                  <span>Admin</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Admin Passkey (Only for Admin) */}
-            {formData.role === 'admin' && (
-              <div className="form-group admin-section">
-                <label htmlFor="adminPasskey">Admin Passkey *</label>
-                <input
-                  type="password"
-                  id="adminPasskey"
-                  name="adminPasskey"
-                  placeholder="Enter admin passkey"
-                  value={formData.adminPasskey}
-                  onChange={handleInputChange}
-                  className={errors.adminPasskey ? 'error' : ''}
-                />
-                {errors.adminPasskey && (
-                  <span className="error-text">{errors.adminPasskey}</span>
-                )}
-              </div>
-            )}
-
             {/* Server Error */}
             {errors.server && (
               <div className="server-error">{errors.server}</div>
@@ -364,6 +266,11 @@ export default function SignUp() {
               Already have an account?{' '}
               <Link to="/login" className="auth-link">
                 Log in
+              </Link>
+            </p>
+            <p>
+              <Link to="/admin-signup" className="auth-link">
+                Sign up as Admin?
               </Link>
             </p>
           </div>
