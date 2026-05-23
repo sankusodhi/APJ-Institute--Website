@@ -91,7 +91,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-slate-100 min-h-screen text-slate-800 overflow-x-hidden selection:bg-[#1e3a5f]/30">
-      <TopHeaderBar />
+      {/* <TopHeaderBar /> */}
       {/* <Navbar /> */}
 
       {/* ════════════════════════════════════════════
