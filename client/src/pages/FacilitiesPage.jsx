@@ -92,8 +92,8 @@ export default function FacilitiesPage() {
   return (
     <div ref={containerRef} className="bg-[#020617] min-h-screen text-slate-200 overflow-hidden font-sans selection:bg-cyan-500/30">
       <div className="relative z-[100]">
-        <TopHeaderBar />
-        <Navbar />
+        {/* <TopHeaderBar /> */}
+        {/* <Navbar /> */}
       </div>
       
       {/* Ambient Global Glows */}
