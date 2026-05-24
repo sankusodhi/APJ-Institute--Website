@@ -15,8 +15,6 @@ import {
   Newspaper,
   Sparkles,
 } from 'lucide-react';
-import Navbar from '../components/home/Navbar';
-import Footer from '../components/home/Footer';
 import {
   importantAnnouncements,
   latestNews,
@@ -158,8 +156,6 @@ export default function NewsPage() {
 
   return (
     <div className={containerClass}>
-      {/* <Navbar /> */}
-
       <div className={`sticky top-[76px] z-40 border-y ${isDark ? 'border-white/10 bg-slate-950/95' : 'border-blue-100 bg-white/95'} backdrop-blur-xl`}>
         <div className="mx-auto max-w-7xl px-4 py-3 lg:px-8">
           <div className="ticker-shell overflow-hidden rounded-3xl border border-dashed border-blue-200/50 px-4 py-3">
@@ -481,8 +477,6 @@ export default function NewsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

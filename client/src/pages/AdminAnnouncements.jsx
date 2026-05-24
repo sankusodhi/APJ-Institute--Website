@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Megaphone, Plus, Image as ImageIcon, Link as LinkIcon, Calendar, Users, Eye, MoreHorizontal } from 'lucide-react';
+import { ArrowLeft, Calendar, Users, Eye, MoreHorizontal } from 'lucide-react';
 import { getAnnouncements, saveAnnouncements } from '../data/announcementsData';
-import img1 from '../1.webp';
-import img2 from '../fistsc1.jpg';
 
 export default function AdminAnnouncements() {
   const navigate = useNavigate();
-  const [noticeTitle, setNoticeTitle] = useState('');
-  const [noticeAudience, setNoticeAudience] = useState('All Students & Staff');
-  const [noticeCategory, setNoticeCategory] = useState('Academic');
-  const [noticeBody, setNoticeBody] = useState('');
   const [loadingOlder, setLoadingOlder] = useState(false);
-
   const [announcementsList, setAnnouncementsList] = useState([]);
 
   useEffect(() => {
@@ -20,30 +13,7 @@ export default function AdminAnnouncements() {
   }, []);
 
 
-  const handlePublish = () => {
-    if (!noticeTitle.trim()) {
-      alert('Please enter a title for the announcement.');
-      return;
-    }
-    const newNotice = {
-      id: Date.now(),
-      title: noticeTitle,
-      date: "Just now",
-      audience: noticeAudience,
-      views: 0,
-      image: null,
-      tag: noticeCategory === 'Academic' ? 'Event' : noticeCategory
-    };
-    
-    const updatedList = [newNotice, ...announcementsList];
-    setAnnouncementsList(updatedList);
-    saveAnnouncements(updatedList);
-    
-    setNoticeTitle('');
-    setNoticeBody('');
-    setNoticeAudience('All Students & Staff');
-    setNoticeCategory('Academic');
-  };
+  
 
   const handleLoadOlder = () => {
     setLoadingOlder(true);
@@ -99,92 +69,10 @@ export default function AdminAnnouncements() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Left Column - Compose Area */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-              <div className="p-6 border-b border-slate-100 bg-slate-50/50">
-                <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                  <Megaphone className="w-5 h-5 text-brand-600" /> Compose New Notice
-                </h2>
-              </div>
-              
-              <div className="p-6 space-y-5">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase">Announcement Title</label>
-                  <input 
-                    type="text" 
-                    placeholder="E.g., Holiday on account of Diwali" 
-                    value={noticeTitle}
-                    onChange={(e) => setNoticeTitle(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold outline-none focus:border-brand-500 focus:bg-white transition-all"
-                  />
-                </div>
+          {/* Left column removed: compose form was intentionally removed */}
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Target Audience</label>
-                    <select 
-                      value={noticeAudience}
-                      onChange={(e) => setNoticeAudience(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold outline-none focus:border-brand-500"
-                    >
-                      <option>All Students & Staff</option>
-                      <option>Students Only</option>
-                      <option>Faculty Only</option>
-                      <option>Specific Department</option>
-                    </select>
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Category</label>
-                    <select 
-                      value={noticeCategory}
-                      onChange={(e) => setNoticeCategory(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold outline-none focus:border-brand-500"
-                    >
-                      <option>Academic</option>
-                      <option>Event</option>
-                      <option>Administrative</option>
-                      <option>Placement</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase">Message Body</label>
-                  <div className="border border-slate-200 rounded-xl overflow-hidden focus-within:border-brand-500 transition-colors">
-                    {/* Mock Rich Text Toolbar */}
-                    <div className="bg-slate-50 border-b border-slate-200 px-3 py-2 flex items-center gap-2">
-                      <button onClick={() => alert('Bold applied')} className="p-1.5 hover:bg-slate-200 rounded text-slate-600 font-bold">B</button>
-                      <button onClick={() => alert('Italic applied')} className="p-1.5 hover:bg-slate-200 rounded text-slate-600 italic font-serif">I</button>
-                      <button onClick={() => alert('Underline applied')} className="p-1.5 hover:bg-slate-200 rounded text-slate-600 underline">U</button>
-                      <div className="w-px h-5 bg-slate-300 mx-1"></div>
-                      <button onClick={() => alert('Insert image dialog opened')} className="p-1.5 hover:bg-slate-200 rounded text-slate-600"><ImageIcon className="w-4 h-4" /></button>
-                      <button onClick={() => alert('Insert link dialog opened')} className="p-1.5 hover:bg-slate-200 rounded text-slate-600"><LinkIcon className="w-4 h-4" /></button>
-                    </div>
-                    <textarea 
-                      rows="6"
-                      value={noticeBody}
-                      onChange={(e) => setNoticeBody(e.target.value)}
-                      className="w-full p-4 text-sm outline-none resize-y"
-                    ></textarea>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center gap-2 text-sm text-slate-500">
-                    <input type="checkbox" id="email-notify" className="w-4 h-4 rounded text-brand-600" />
-                    <label htmlFor="email-notify">Send email notification</label>
-                  </div>
-                  <button onClick={handlePublish} className="flex items-center gap-2 px-6 py-3 bg-brand-600 text-white text-sm font-bold rounded-xl shadow-lg shadow-brand-200 hover:bg-brand-700 hover:-translate-y-0.5 transition-all">
-                    Publish Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Active Feed */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Right Column - Active Feed (full width) */}
+          <div className="lg:col-span-12 space-y-6">
             <h2 className="text-xl font-extrabold text-slate-800">Recent Broadcasts</h2>
             
             <div className="space-y-4">

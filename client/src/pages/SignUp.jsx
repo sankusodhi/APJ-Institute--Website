@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiX, FiEye, FiEyeOff } from 'react-icons/fi';
+import axios from "axios";
+
 import '../styles/Auth.css';
 
 export default function SignUp() {
@@ -28,6 +30,43 @@ export default function SignUp() {
       [name]: value,
     }));
   };
+
+  const handleSignup = async (e) => {
+
+   e.preventDefault();
+
+   try {
+
+      const response = await axios.post(
+         "http://localhost:5000/api/auth/signup",
+         {
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            password: formData.password,
+         }
+      );
+
+      console.log(response.data);
+
+      alert("Signup Successful");
+
+      localStorage.setItem(
+         "token",
+         response.data.token
+      );
+
+      navigate("/login");
+
+   } catch (error) {
+
+      console.log(error.response?.data);
+
+      alert(
+         error.response?.data?.message ||
+         "Signup Failed"
+      );
+   }
+};
 
   const validateForm = () => {
     const newErrors = {};
@@ -70,23 +109,72 @@ export default function SignUp() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (!validateForm()) {
+  //   if (!validateForm()) {
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   setTimeout(() => {
+  //     localStorage.setItem('role', 'user');
+  //     localStorage.setItem('email', formData.email);
+  //     alert('✅ Account created successfully! Redirecting to login...');
+  //     navigate('/login');
+  //     setLoading(false);
+  //   }, 500);
+  // };
+
+
+const handleSubmit = async (e) => {
+
+   e.preventDefault();
+
+   if (!validateForm()) {
       return;
-    }
+   }
 
-    setLoading(true);
+   try {
 
-    setTimeout(() => {
-      localStorage.setItem('role', 'user');
-      localStorage.setItem('email', formData.email);
-      alert('✅ Account created successfully! Redirecting to login...');
-      navigate('/login');
+      setLoading(true);
+
+      const response = await axios.post(
+         "http://localhost:5000/api/auth/signup",
+         {
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            password: formData.password,
+         }
+      );
+
+      console.log(response.data);
+
+      localStorage.setItem(
+         "token",
+         response.data.token
+      );
+
+      alert("Signup Successful");
+
+      navigate("/login");
+
+   } catch (error) {
+
+      console.log(error.response?.data);
+
+      alert(
+         error.response?.data?.message ||
+         "Signup Failed"
+      );
+
+   } finally {
+
       setLoading(false);
-    }, 500);
-  };
+   }
+};
+
 
   return (
     <div className="auth-container signup-page">
