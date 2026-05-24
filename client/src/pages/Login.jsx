@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 import '../styles/Auth.css';
 
 export default function Login() {
@@ -39,7 +40,7 @@ export default function Login() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -48,21 +49,61 @@ export default function Login() {
 
     setLoading(true);
 
-    setTimeout(() => {
-      localStorage.setItem('token', 'mock-user-token-12345');
-      localStorage.setItem('role', 'user');
-      localStorage.setItem('email', formData.email);
-      localStorage.setItem('user', JSON.stringify({
-        fullName: formData.email.split('@')[0],
-        email: formData.email,
-        phone: '9876543210',
-        role: 'user'
-      }));
-      alert('✅ Welcome User! Login successful.');
-      navigate('/user-dashboard');
-      setLoading(false);
-    }, 500);
-  };
+  //   setTimeout(() => {
+  //     localStorage.setItem('token', 'mock-user-token-12345');
+  //     localStorage.setItem('role', 'user');
+  //     localStorage.setItem('email', formData.email);
+  //     localStorage.setItem('user', JSON.stringify({
+  //       fullName: formData.email.split('@')[0],
+  //       email: formData.email,
+  //       phone: '9876543210',
+  //       role: 'user'
+  //     }));
+  //     alert('✅ Welcome User! Login successful.');
+  //     navigate('/user-dashboard');
+  //     setLoading(false);
+  //   }, 500);
+  // };
+
+  try {
+
+  const response = await axios.post(
+    "http://localhost:5000/api/auth/login",
+    {
+      email: formData.email,
+      password: formData.password,
+    }
+  );
+
+  console.log(response.data);
+
+  localStorage.setItem(
+    "token",
+    response.data.token
+  );
+
+  alert("Login Successful");
+
+  navigate("/");
+
+} catch (error) {
+
+  console.log(error.response?.data);
+
+  alert(
+    error.response?.data?.message ||
+    "Login Failed"
+  );
+
+} finally {
+
+  setLoading(false);
+
+}
+
+ };
+
+
 
   return (
     <div className="auth-container">
