@@ -3,7 +3,7 @@ import { courseNames, quickLinks } from '../../data/homepageData';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-blue-100 bg-slate-950 text-white">
+    <footer className="border-t border-[#15305b]/10 bg-slate-950 text-white">
       <div className="mx-auto max-w-7xl px-4 py-14 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
           <div>
@@ -14,7 +14,7 @@ export default function Footer() {
 
             <div className="mt-6 flex gap-3">
               {[FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube].map((Icon, index) => (
-                <a key={index} href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-blue-600">
+                <a key={index} href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#15305b]">
                   <Icon />
                 </a>
               ))}
@@ -27,7 +27,7 @@ export default function Footer() {
               {quickLinks.map((item) => (
                 <li key={item}>
                   <a href={`#${item.toLowerCase()}`} className="inline-flex items-center gap-2 transition hover:text-white">
-                    <FaChevronRight className="text-xs text-blue-400" />
+                    <FaChevronRight className="text-xs text-blue-300" />
                     {item}
                   </a>
                 </li>
@@ -40,7 +40,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-slate-300">
               {courseNames.map((course) => (
                 <li key={course} className="inline-flex items-center gap-2">
-                  <FaChevronRight className="text-xs text-blue-400" />
+                  <FaChevronRight className="text-xs text-blue-300" />
                   {course}
                 </li>
               ))}
