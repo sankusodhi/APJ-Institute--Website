@@ -1104,7 +1104,6 @@ export default function CinematicGallery() {
       </section>
       {/* Common Page Footer */}
       <Footer />
-
     </div>
   );
 }
