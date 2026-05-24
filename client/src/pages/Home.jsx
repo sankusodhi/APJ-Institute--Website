@@ -15,7 +15,7 @@ export default function Home() {
       <HeroSlider />
       <HighlightCards />
       <UpdatesSection />
-      <AdmissionSection />
+      <AdmissionSection variant="homepage" />
       <AboutSection />
       <CoursesSection />
       <GallerySection />

@@ -26,11 +26,11 @@ export default function UpdatesSection() {
   return (
     <section id="updates" className="relative overflow-hidden py-16 sm:py-20">
       <div className="absolute inset-0 bg-medical-grid opacity-80" />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#15305b]/30 to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-blue-700 shadow-sm backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#15305b]/20 bg-white/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#15305b] shadow-sm backdrop-blur">
               <FaBell />
               Live Updates & Notifications
             </div>
@@ -47,7 +47,7 @@ export default function UpdatesSection() {
               <motion.div
                 key={counter.id}
                 whileHover={{ y: -3 }}
-                className="rounded-2xl border border-blue-100 bg-white/85 p-4 text-center shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] backdrop-blur-xl"
+                className="rounded-2xl border border-[#15305b]/10 bg-white/85 p-4 text-center shadow-[0_18px_45px_-32px_rgba(15,23,42,0.35)] backdrop-blur-xl"
               >
                 <p className="text-2xl font-black text-slate-900">{counter.value}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{counter.label}</p>
@@ -65,12 +65,12 @@ export default function UpdatesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.35 }}
-              className="overflow-hidden rounded-3xl border border-blue-100 bg-white/85 shadow-soft backdrop-blur-xl"
+              className="overflow-hidden rounded-3xl border border-[#15305b]/10 bg-white/85 shadow-soft backdrop-blur-xl"
             >
               <div className="border-b border-slate-100 px-5 py-4 sm:px-6">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">Notifications Panel</p>
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#15305b]">Notifications Panel</p>
                     <h3 className="mt-1 text-2xl font-black text-slate-900">Announcements and Circulars</h3>
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-sm font-semibold text-red-700">
@@ -80,16 +80,16 @@ export default function UpdatesSection() {
                 </div>
               </div>
 
-              <div className="grid gap-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 via-white to-red-50 px-5 py-5 sm:px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
+              <div className="grid gap-5 border-b border-slate-100 bg-gradient-to-br from-[#15305b]/5 via-white to-red-50 px-5 py-5 sm:px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
                 <motion.div
                   key={spotlight.id}
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.35 }}
-                  className="rounded-3xl border border-blue-100 bg-white/90 p-5 shadow-sm"
+                  className="rounded-3xl border border-[#15305b]/10 bg-white/90 p-5 shadow-sm"
                 >
                   {spotlight.image && (
-                    <div className="mb-4 rounded-2xl overflow-hidden border border-blue-100 shadow-md">
+                    <div className="mb-4 rounded-2xl overflow-hidden border border-[#15305b]/10 shadow-md">
                       <img 
                         src={spotlight.image} 
                         alt={spotlight.title}
@@ -101,7 +101,7 @@ export default function UpdatesSection() {
                     <span className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white">
                       Live Spotlight
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-blue-700">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#15305b]">
                       <FaRegClock />
                       Rotating update
                     </span>
@@ -112,7 +112,7 @@ export default function UpdatesSection() {
 
                   <div className="mt-4 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                     <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-slate-700">
-                      <FaCalendarAlt className="text-blue-600" />
+                      <FaCalendarAlt className="text-[#15305b]" />
                       {spotlight.date}
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-slate-700">
@@ -128,7 +128,7 @@ export default function UpdatesSection() {
                       <FaFilePdf />
                     </span>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">Quick Access</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#bfdbfe]">Quick Access</p>
                       <h4 className="text-lg font-bold">Downloadable circulars</h4>
                     </div>
                   </div>
@@ -141,7 +141,7 @@ export default function UpdatesSection() {
                 </div>
               </div>
 
-              <div className="max-h-[760px] space-y-4 overflow-y-auto px-5 py-5 pr-3 sm:px-6 notice-scrollbar">
+              <div className="space-y-4 px-5 py-5 sm:px-6">
                 {liveNotificationCards.map((item, index) => (
                   <NotificationCard key={item.id} item={item} index={index} />
                 ))}

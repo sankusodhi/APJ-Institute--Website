@@ -10,14 +10,11 @@ export default function Layout() {
     <>
       <ScrollToTop />
       <PopupAnnouncement />
-
       <TopHeaderBar />
       <Navbar />
-
       <main>
         <Outlet />
       </main>
-
       <Footer />
     </>
   );
