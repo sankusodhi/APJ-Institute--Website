@@ -374,7 +374,7 @@ export default function FacilitiesPage() {
 
             {/* Professional Background Image Overlay */}
             <img 
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2000&auto=format&fit=crop" 
+              src="/cta_bg.png" 
               alt="Medical Professionals" 
               className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30 group-hover/cta:opacity-50 group-hover/cta:scale-105 transition-all duration-1000 z-0" 
             />
