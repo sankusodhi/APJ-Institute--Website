@@ -475,10 +475,10 @@ export default function CoursesPage() {
       </section>
 
       {/* 6. PREMIUM CTA SECTION */}
-      <section className="relative py-24 mx-4 sm:mx-8 lg:mx-auto max-w-7xl mb-24 overflow-hidden rounded-[3rem] shadow-[0_0_100px_rgba(37,99,235,0.2)]">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f3a] via-[#1e3a5f] to-[#0f1f3a] z-0"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2000&auto=format&fit=crop')] opacity-10 mix-blend-overlay object-cover"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+      <section className="group relative py-24 mx-4 sm:mx-8 lg:mx-auto max-w-7xl mb-24 overflow-hidden rounded-[3rem] shadow-[0_0_80px_rgba(0,0,0,0.3)] bg-slate-950 transition-all duration-700">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 opacity-100 transition-opacity duration-700 group-hover:opacity-0 z-0"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-5 transition-all duration-700 group-hover:opacity-40 group-hover:scale-105 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-0"></div>
         
         <div className="relative z-10 text-center px-4 md:px-12 py-16 flex flex-col items-center">
           <motion.div

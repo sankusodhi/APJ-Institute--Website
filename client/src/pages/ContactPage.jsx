@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   MapPin, Phone, Mail, Clock, Send, ArrowRight,
   ChevronDown, GraduationCap, HelpCircle, PhoneCall,
-  Star, Map, CalendarCheck, Users, Briefcase, Award
+  Star, Map, CalendarCheck, Users, Briefcase, Award, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import CountUp from 'react-countup';
 import { Typewriter } from 'react-simple-typewriter';
@@ -28,14 +28,14 @@ const testimonials = [
 /* ─── Accordion Item ─── */
 function FaqItem({ faq, isOpen, onToggle }) {
   return (
-    <div className={`border rounded-2xl overflow-hidden transition-all duration-500 ${isOpen ? 'border-cyan-400 bg-white shadow-[0_0_30px_rgba(34,211,238,0.2)] scale-[1.02] z-10 relative' : 'border-slate-200 bg-white hover:border-cyan-200 shadow-sm hover:shadow-md'}`}>
+    <div className={`border rounded-2xl overflow-hidden transition-all duration-500 ${isOpen ? 'border-[#1e3a5f] bg-white shadow-[0_0_30px_rgba(30,58,95,0.2)] scale-[1.02] z-10 relative' : 'border-slate-200 bg-white hover:border-[#1e3a5f]/20 shadow-sm hover:shadow-md'}`}>
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between p-5 sm:p-6 text-left group"
       >
         <span className={`text-base font-bold pr-4 transition-colors duration-300 ${isOpen ? 'text-[#1e3a5f]' : 'text-slate-800 group-hover:text-[#1e3a5f]'}`}>{faq.q}</span>
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-cyan-100' : 'bg-slate-100 group-hover:bg-cyan-50'}`}>
-          <ChevronDown size={20} className={`shrink-0 transition-transform duration-500 ${isOpen ? 'rotate-180 text-cyan-600' : 'text-slate-400 group-hover:text-cyan-600'}`} />
+        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-[#1e3a5f]/10' : 'bg-slate-100 group-hover:bg-[#1e3a5f]/5'}`}>
+          <ChevronDown size={20} className={`shrink-0 transition-transform duration-500 ${isOpen ? 'rotate-180 text-[#1e3a5f]' : 'text-slate-400 group-hover:text-[#1e3a5f]'}`} />
         </div>
       </button>
       <AnimatePresence initial={false}>
@@ -74,6 +74,23 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handleDotClick = (idx) => {
+    if (idx === currentTestimonial) return;
+    setDirection(idx > currentTestimonial ? 1 : -1);
+    setCurrentTestimonial(idx);
+  };
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -87,6 +104,7 @@ export default function ContactPage() {
   // Auto-slide testimonials
   useEffect(() => {
     const timer = setInterval(() => {
+      setDirection(1);
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(timer);
@@ -111,7 +129,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen text-slate-800 overflow-x-hidden selection:bg-cyan-500/30">
+    <div className="bg-[#f8fafc] min-h-screen text-slate-800 overflow-x-hidden selection:bg-[#1e3a5f]/30">
 
       {/* ════════════════════════════════════════════
           1. HERO SECTION (ULTRA MODERN)
@@ -143,7 +161,7 @@ export default function ContactPage() {
                 ease: "easeInOut",
                 delay: Math.random() * 5
               }}
-              className="absolute w-2 h-2 rounded-full bg-cyan-400 blur-[1px]"
+              className="absolute w-2 h-2 rounded-full bg-[#1e3a5f] blur-[1px]"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`
@@ -153,21 +171,21 @@ export default function ContactPage() {
 
           {/* Glowing Orbs */}
           <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-600/30 rounded-full blur-[150px]"></motion.div>
+            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#1e3a5f]/30 rounded-full blur-[150px]"></motion.div>
           <motion.div animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[150px]"></motion.div>
+            className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] bg-[#1e3a5f]/20 rounded-full blur-[150px]"></motion.div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center mt-16">
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, type: "spring" }}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cyan-400/50 bg-cyan-500/10 backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-            <SparklesIcon className="text-cyan-300 w-5 h-5" />
-            <span className="text-xs font-bold uppercase tracking-widest text-cyan-50">Connect With Us</span>
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#1e3a5f]/50 bg-[#1e3a5f]/10 backdrop-blur-md mb-8 shadow-[0_0_30px_rgba(30,58,95,0.3)]">
+            <SparklesIcon className="text-[#5984b8] w-5 h-5" />
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-100">Connect With Us</span>
           </motion.div>
 
           <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-6xl md:text-8xl font-black tracking-tight text-white mb-6 leading-tight">
-            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500 filter drop-shadow-[0_0_20px_rgba(34,211,238,0.4)]">APJ Institute</span>
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5984b8] to-[#1e3a5f] filter drop-shadow-[0_0_20px_rgba(30,58,95,0.4)]">APJ Institute</span>
           </motion.h1>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}
@@ -196,13 +214,13 @@ export default function ContactPage() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-white/70 backdrop-blur-2xl rounded-[2.5rem] border border-white/50 shadow-[0_30px_60px_rgba(30,58,95,0.1)]"
         >
           {[
-            { icon: <Users />, count: 5000, suffix: '+', label: 'Enrolled Students', color: 'text-blue-500' },
-            { icon: <Briefcase />, count: 95, suffix: '%', label: 'Placement Rate', color: 'text-cyan-500' },
+            { icon: <Users />, count: 5000, suffix: '+', label: 'Enrolled Students', color: 'text-[#1e3a5f]' },
+            { icon: <Briefcase />, count: 95, suffix: '%', label: 'Placement Rate', color: 'text-[#1e3a5f]' },
             { icon: <Award />, count: 20, suffix: '+', label: 'Advanced Labs', color: 'text-indigo-500' },
             { icon: <GraduationCap />, count: 15, suffix: '+', label: 'Expert Faculty', color: 'text-purple-500' },
           ].map((stat, i) => (
             <motion.div key={i} variants={cardItemVariants}
-              className="flex flex-col items-center justify-center p-8 text-center group bg-white/80 rounded-3xl shadow-sm hover:shadow-[0_10px_40px_rgba(34,211,238,0.2)] transition-all duration-500 border border-transparent hover:border-cyan-200"
+              className="flex flex-col items-center justify-center p-8 text-center group bg-white/80 rounded-3xl shadow-sm hover:shadow-[0_10px_40px_rgba(30,58,95,0.2)] transition-all duration-500 border border-transparent hover:border-[#1e3a5f]/20"
             >
               <div className={`w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 ${stat.color}`}>
                 {stat.icon}
@@ -224,8 +242,8 @@ export default function ContactPage() {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { icon: <MapPin size={28} />, label: 'Our Address', value: 'Sanjay Nagar, Dantewada', color: 'text-blue-600', bg: 'bg-blue-50' },
-            { icon: <Phone size={28} />, label: 'Phone Number', value: '92437 58191', color: 'text-cyan-600', bg: 'bg-cyan-50' },
+            { icon: <MapPin size={28} />, label: 'Our Address', value: 'Sanjay Nagar, Dantewada', color: 'text-[#1e3a5f]', bg: 'bg-blue-50' },
+            { icon: <Phone size={28} />, label: 'Phone Number', value: '92437 58191', color: 'text-[#1e3a5f]', bg: 'bg-[#1e3a5f]/5' },
             { icon: <Mail size={28} />, label: 'Email Address', value: 'info@apjinstitute.com', color: 'text-indigo-600', bg: 'bg-indigo-50' },
             { icon: <Clock size={28} />, label: 'Working Hours', value: 'Mon – Sat: 9 AM – 5 PM', color: 'text-purple-600', bg: 'bg-purple-50' },
           ].map((card, i) => (
@@ -247,7 +265,7 @@ export default function ContactPage() {
           4. INTERACTIVE MAP & ENHANCED FORM
       ════════════════════════════════════════════ */}
       <section className="mx-auto max-w-7xl px-4 lg:px-8 pb-32 relative">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-200/40 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#1e3a5f]/20/40 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-blue-300/20 rounded-full blur-[150px] pointer-events-none -z-10"></div>
 
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
@@ -255,26 +273,26 @@ export default function ContactPage() {
           {/* Enhanced Form */}
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="show" viewport={{ once: true }}>
             <div className="mb-10">
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Send Us a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Message</span></h2>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Send Us a <span className="text-transparent bg-clip-text bg-[#1e3a5f]">Message</span></h2>
               <p className="text-slate-500 text-lg font-medium">Fill out the form below and our admissions team will contact you within 24 hours.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="bg-white border border-slate-100 rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_60px_rgba(30,58,95,0.05)] relative overflow-hidden group/form">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-50 rounded-full blur-3xl -z-10 transition-opacity duration-700 opacity-0 group-focus-within/form:opacity-100"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#1e3a5f]/5 rounded-full blur-3xl -z-10 transition-opacity duration-700 opacity-0 group-focus-within/form:opacity-100"></div>
 
               <div className="space-y-6 relative z-10">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="relative group/input">
                     <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder=" "
-                      className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 focus:outline-none transition-all" />
-                    <label htmlFor="name" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-cyan-600 peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                      className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 focus:outline-none transition-all" />
+                    <label htmlFor="name" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-[#1e3a5f] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
                       Full Name
                     </label>
                   </div>
                   <div className="relative group/input">
                     <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required placeholder=" "
-                      className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 focus:outline-none transition-all" />
-                    <label htmlFor="phone" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-cyan-600 peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                      className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 focus:outline-none transition-all" />
+                    <label htmlFor="phone" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-[#1e3a5f] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
                       Phone Number
                     </label>
                   </div>
@@ -282,15 +300,15 @@ export default function ContactPage() {
                 
                 <div className="relative">
                   <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder=" "
-                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 focus:outline-none transition-all" />
-                  <label htmlFor="email" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-cyan-600 peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 focus:outline-none transition-all" />
+                  <label htmlFor="email" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-[#1e3a5f] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
                     Email Address
                   </label>
                 </div>
                 
                 <div className="relative">
                   <select id="subject" name="subject" value={formData.subject} onChange={handleChange} required
-                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 focus:outline-none transition-all appearance-none cursor-pointer">
+                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 focus:outline-none transition-all appearance-none cursor-pointer">
                     <option value="" disabled hidden></option>
                     <option value="admission">Admission Enquiry</option>
                     <option value="course">Course Information</option>
@@ -298,7 +316,7 @@ export default function ContactPage() {
                     <option value="hostel">Hostel Facility</option>
                     <option value="other">Other</option>
                   </select>
-                  <label htmlFor="subject" className={`absolute left-6 transition-all duration-300 font-bold uppercase tracking-widest cursor-pointer ${formData.subject ? 'top-3 text-[10px] text-slate-500' : 'top-5 text-sm text-slate-400 normal-case tracking-normal peer-focus:top-3 peer-focus:text-[10px] peer-focus:text-cyan-600 peer-focus:uppercase peer-focus:tracking-widest'}`}>
+                  <label htmlFor="subject" className={`absolute left-6 transition-all duration-300 font-bold uppercase tracking-widest cursor-pointer ${formData.subject ? 'top-3 text-[10px] text-slate-500' : 'top-5 text-sm text-slate-400 normal-case tracking-normal peer-focus:top-3 peer-focus:text-[10px] peer-focus:text-[#1e3a5f] peer-focus:uppercase peer-focus:tracking-widest'}`}>
                     Subject
                   </label>
                   <ChevronDown className="absolute right-6 top-6 text-slate-400 pointer-events-none" size={20} />
@@ -306,8 +324,8 @@ export default function ContactPage() {
                 
                 <div className="relative">
                   <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder=" "
-                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10 focus:outline-none transition-all resize-none" />
-                  <label htmlFor="message" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-cyan-600 peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
+                    className="peer w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 pb-3 text-sm text-slate-900 focus:bg-white focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 focus:outline-none transition-all resize-none" />
+                  <label htmlFor="message" className="absolute left-6 top-5 text-sm font-bold text-slate-400 transition-all duration-300 peer-focus:-translate-y-2 peer-focus:text-[10px] peer-focus:text-[#1e3a5f] peer-focus:uppercase peer-focus:tracking-widest peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-slate-500 peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-widest cursor-text">
                     Your Message
                   </label>
                 </div>
@@ -322,7 +340,7 @@ export default function ContactPage() {
                   ) : (
                     <motion.button key="btn" type="submit" 
                       whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                      className="w-full px-10 py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black text-sm uppercase tracking-widest shadow-[0_15px_30px_rgba(34,211,238,0.3)] hover:shadow-[0_20px_40px_rgba(34,211,238,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group"
+                      className="w-full px-10 py-5 rounded-2xl bg-[#1e3a5f] text-white font-black text-sm uppercase tracking-widest shadow-[0_15px_30px_rgba(30,58,95,0.3)] hover:shadow-[0_20px_40px_rgba(30,58,95,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group"
                     >
                       Send Message <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </motion.button>
@@ -335,7 +353,7 @@ export default function ContactPage() {
           {/* Interactive Map */}
           <motion.div variants={fadeUpVariant} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-col gap-6 h-full">
             <div className="mb-4">
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Visit Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Campus</span></h2>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">Visit Our <span className="text-transparent bg-clip-text bg-[#1e3a5f]">Campus</span></h2>
               <p className="text-slate-500 text-lg font-medium">Experience our world-class facilities and labs in person.</p>
             </div>
 
@@ -354,14 +372,14 @@ export default function ContactPage() {
                 initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-xl border border-white rounded-[2rem] p-6 flex flex-col sm:flex-row items-center sm:items-start gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover:scale-[1.02] transition-transform duration-500"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-50 rounded-2xl flex items-center justify-center shrink-0 border border-blue-200/50 shadow-inner relative">
-                  <MapPin size={32} className="text-blue-600 relative z-10" />
-                  <div className="absolute inset-0 bg-blue-400 rounded-2xl animate-ping opacity-20"></div>
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-[#1e3a5f]/5 rounded-2xl flex items-center justify-center shrink-0 border border-blue-200/50 shadow-inner relative">
+                  <MapPin size={32} className="text-[#1e3a5f] relative z-10" />
+                  <div className="absolute inset-0 bg-[#2a4d75] rounded-2xl animate-ping opacity-20"></div>
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="text-slate-900 font-black text-lg">APJ Institute Main Campus</p>
                   <p className="text-slate-500 text-sm font-medium mt-1 leading-relaxed">Sanjay Nagar, Near BSNL Exchange, Dantewada, Chhattisgarh</p>
-                  <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 mt-3 text-cyan-600 font-bold text-sm hover:text-cyan-700">
+                  <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 mt-3 text-[#1e3a5f] font-bold text-sm hover:text-[#152842]">
                     Get Directions <ArrowRight size={16} />
                   </a>
                 </div>
@@ -376,21 +394,30 @@ export default function ContactPage() {
       ════════════════════════════════════════════ */}
       <section className="bg-slate-950 py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/20 rounded-full blur-[150px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0f1c2e]/20 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Student <span className="text-cyan-400">Success Stories</span></h2>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Student <span className="text-[#1e3a5f]">Success Stories</span></h2>
           <p className="text-slate-400 text-lg mb-16 max-w-2xl mx-auto">Hear what our graduates have to say about their journey and career growth at APJ Institute.</p>
 
-          <div className="relative max-w-4xl mx-auto min-h-[300px] flex items-center justify-center">
+          <div className="relative max-w-5xl mx-auto min-h-[300px] flex items-center justify-center px-12 md:px-20">
+            {/* Left Navigation Arrow */}
+            <button 
+              onClick={handlePrev}
+              className="absolute left-0 md:left-4 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1e3a5f]/80 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 shadow-[0_0_15px_rgba(30,58,95,0.2)] hover:shadow-[0_0_25px_rgba(30,58,95,0.6)]"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={24} className="mr-1" />
+            </button>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentTestimonial}
-                initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                initial={{ opacity: 0, x: direction * 50, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -50, scale: 0.95 }}
+                exit={{ opacity: 0, x: direction * -50, scale: 0.95 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[3rem] p-10 md:p-16 w-full shadow-2xl"
+                className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[3rem] p-10 md:p-16 w-full max-w-4xl shadow-2xl"
               >
                 <div className="flex justify-center gap-1 mb-8">
                   {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -402,17 +429,26 @@ export default function ContactPage() {
                 </p>
                 <div>
                   <h4 className="text-xl font-bold text-white">{testimonials[currentTestimonial].name}</h4>
-                  <p className="text-cyan-400 font-semibold mt-1 uppercase tracking-widest text-xs">{testimonials[currentTestimonial].role}</p>
+                  <p className="text-[#1e3a5f] font-semibold mt-1 uppercase tracking-widest text-xs">{testimonials[currentTestimonial].role}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
+
+            {/* Right Navigation Arrow */}
+            <button 
+              onClick={handleNext}
+              className="absolute right-0 md:right-4 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1e3a5f]/80 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 shadow-[0_0_15px_rgba(30,58,95,0.2)] hover:shadow-[0_0_25px_rgba(30,58,95,0.6)]"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={24} className="ml-1" />
+            </button>
 
             <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-3">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrentTestimonial(idx)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === idx ? 'bg-cyan-400 w-10' : 'bg-white/20 hover:bg-white/50'}`}
+                  onClick={() => handleDotClick(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentTestimonial === idx ? 'bg-[#1e3a5f] w-10' : 'bg-white/20 hover:bg-white/50'}`}
                 />
               ))}
             </div>
@@ -425,7 +461,7 @@ export default function ContactPage() {
       ════════════════════════════════════════════ */}
       <section className="mx-auto max-w-6xl px-4 py-32">
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-          className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 shadow-[0_30px_60px_rgba(37,99,235,0.3)]">
+          className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#1e3a5f] via-[#152842] to-[#1e3a5f] shadow-[0_30px_60px_rgba(30,58,95,0.3)]">
           
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[80px] pointer-events-none"></div>
           
@@ -438,7 +474,7 @@ export default function ContactPage() {
               Book a personalized campus tour. Meet our faculty, explore the advanced labs, and experience student life.
             </p>
             <div className="flex flex-col sm:flex-row gap-5">
-              <a href="tel:9243758191" className="px-10 py-5 rounded-full bg-white text-blue-700 font-black text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-3">
+              <a href="tel:9243758191" className="px-10 py-5 rounded-full bg-white text-[#152842] font-black text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-3">
                 <PhoneCall size={20} /> Schedule Visit
               </a>
             </div>
@@ -451,11 +487,11 @@ export default function ContactPage() {
       ════════════════════════════════════════════ */}
       <section className="mx-auto max-w-4xl px-4 lg:px-8 pb-32">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cyan-200 bg-cyan-50 shadow-sm mb-6">
-            <HelpCircle size={18} className="text-cyan-600" />
-            <span className="text-xs font-bold uppercase tracking-widest text-cyan-800">Have Questions?</span>
+          <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#1e3a5f]/20 bg-[#1e3a5f]/5 shadow-sm mb-6">
+            <HelpCircle size={18} className="text-[#1e3a5f]" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[#0f1c2e]">Have Questions?</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-5 tracking-tight">Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Questions</span></h2>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-5 tracking-tight">Frequently Asked <span className="text-transparent bg-clip-text bg-[#1e3a5f]">Questions</span></h2>
           <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">Find quick answers to common queries about admissions, courses, and campus life.</p>
         </motion.div>
 

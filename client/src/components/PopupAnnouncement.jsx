@@ -19,7 +19,7 @@ export default function PopupAnnouncement() {
 
   const handleApply = () => {
     setIsOpen(false);
-    navigate('/admission');
+    navigate('/contact');
   };
 
   return (
