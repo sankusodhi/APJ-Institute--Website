@@ -2,12 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
-import CoursesPage from './pages/CoursesPage';
-import FacilitiesPage from './pages/FacilitiesPage';
-import AdmissionPage from './pages/AdmissionPage';
-import ContactPage from './pages/ContactPage';
-import GalleryPage from './pages/GalleryPage';
-import NewsPage from './pages/NewsPage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import AdminLogin from './pages/AdminLogin';
@@ -15,7 +9,11 @@ import AdminSignUp from './pages/AdminSignUp';
 import AuthSplitScreen from './pages/AuthSplitScreen';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import CoursesPage from './pages/CoursesPage';
+import FacilitiesPage from './pages/FacilitiesPage';
+import AdmissionPage from './pages/AdmissionPage';
 import CinematicGallery from './pages/CinematicGallery';
+import ContactPage from './pages/ContactPage';
 import AdminFinance from './pages/AdminFinance';
 import AdminAnnouncements from './pages/AdminAnnouncements';
 import AdminQueries from './pages/AdminQueries';
@@ -31,7 +29,7 @@ function App() {
   return (
     <Router>
       <Routes>
-
+        {/* Main Website Routes wrapped with Layout (Navbar + Footer) */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -39,11 +37,11 @@ function App() {
           <Route path="facilities" element={<FacilitiesPage />} />
           <Route path="admission" element={<AdmissionPage />} />
           <Route path="contact" element={<ContactPage />} />
-          <Route path="gallery" element={<GalleryPage />} />
-          <Route path="news" element={<NewsPage />} />
         </Route>
 
-        {/* AUTH & ADMIN ROUTES (UNCHANGED) */}
+        <Route path="/gallery" element={<CinematicGallery />} />
+
+        {/* Auth & Dashboard Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/admin-login" element={<AdminLogin />} />
@@ -61,7 +59,6 @@ function App() {
         <Route path="/admin/settings" element={<AdminSettings />} />
         <Route path="/admin/help" element={<AdminHelp />} />
         <Route path="/admin/courses" element={<AdminCourses />} />
-
       </Routes>
     </Router>
   );

@@ -5,9 +5,7 @@ import {
   Sparkles, Play, ChevronRight, Zap, ShieldCheck, Award, GraduationCap, Monitor,
   Syringe, ArrowRight, Star
 } from 'lucide-react';
-import TopHeaderBar from '../components/home/TopHeaderBar';
-import Navbar from '../components/home/Navbar';
-import Footer from '../components/home/Footer';
+
 
 /* ─── Advanced Magnetic Button Component ─── */
 const MagneticButton = ({ children, className, onClick }) => {
@@ -91,10 +89,7 @@ export default function FacilitiesPage() {
 
   return (
     <div ref={containerRef} className="bg-[#020617] min-h-screen text-slate-200 overflow-hidden font-sans selection:bg-cyan-500/30">
-      <div className="relative z-[100]">
-        <TopHeaderBar />
-        <Navbar />
-      </div>
+
       
       {/* Ambient Global Glows */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -391,9 +386,7 @@ export default function FacilitiesPage() {
         </motion.div>
       </section>
 
-      <div className="relative z-50">
-        <Footer />
-      </div>
+
     </div>
   );
 }

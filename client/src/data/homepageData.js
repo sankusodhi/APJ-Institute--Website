@@ -227,6 +227,7 @@ export const sidebarUpdateGroups = [
     items: [
       { title: 'Practical exam instructions issued', meta: 'Read before exam day' },
       { title: 'Hall tickets to be downloaded online', meta: 'Portal active now' },
+      { title: 'Semester exam schedule published', meta: 'Check timetable' },
     ],
   },
 ];
